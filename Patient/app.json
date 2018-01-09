@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/doctor/doctor"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,7 +25,7 @@
       },
       {
         "text": "医生",
-        "pagePath": "pages/doctor/doctor",
+        "pagePath": "pages/doctorlist/doctorlist",
         "iconPath": "images/icons/doctor.png",
         "selectedIconPath": "images/icons/doctor-a.png"
       },

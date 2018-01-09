@@ -1,8 +1,8 @@
 // pages/home/home.js
-import { AppBase} from "../../app/AppBase.js";
-import { ApiConfig } from "../../apis/apiconfig.js";
-import { ClinicApi } from "../../apis/clinic.api.js";
-var WxParse = require('../../wxParse/wxParse.js');
+import { AppBase} from "../../app/AppBase";
+import { ApiConfig } from "../../apis/apiconfig";
+import { ClinicApi } from "../../apis/clinic.api";
+var WxParse = require('../../wxParse/wxParse');
 
 class Home extends AppBase{
  constructor(){
@@ -26,6 +26,7 @@ class Home extends AppBase{
 
     super.onLoad(options);
     console.log("in home");
+    console.log(options.unicode);
     if(options.unicode==undefined){
       ApiConfig.SetUnicode("vista");
     }else{
@@ -37,6 +38,9 @@ class Home extends AppBase{
       data.content = that.Base.util.HtmlDecode(data.content);
       WxParse.wxParse('content', 'html', data.content, that, 10);
       that.setData({clinic:data});
+    });
+    clinicapi.stardoctor({}, function (data) {
+      that.setData({ stardoctors: data });
     });
   }
 }

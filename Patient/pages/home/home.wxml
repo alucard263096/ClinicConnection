@@ -25,15 +25,23 @@
                 </view>
             </view>
         </view>
-        
-<view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__hd" style="position: relative;">
-                <view class="weui-flex">
-<image   src="{{uploadpath}}clinic/{{clinic.logo}}" style="width: 10vh; height: 10vh; display: block"/>
-                    <image   src="{{uploadpath}}clinic/{{clinic.logo}}" style="width: 10vh; height: 10vh; display: block"/>
-                </view>
-                    
+
+        <view class="weui-panel">
+            <view class="weui-panel__hd">星级医生</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_small-appmsg">
+                    <view class="weui-cells weui-cells_in-small-appmsg">
+                        <navigator wx:for="{{stardoctors}}" wx:key="key" bindtap='gotoDoctor' url="../doctor/doctor?id={{item.id}}" open-type='redirect'  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                            <view class="weui-cell__hd"><image src="{{uploadpath}}doctor/{{item.photo}}" style="border-radius:10vw; width: 20vw;height: 20vw;margin-right: 5px" /></view>
+                            <view class="weui-cell__bd weui-cell_primary">
+                              <view class="weui-media-box weui-media-box_text">
+                                  <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
+                                  <view class="weui-media-box__desc"  ><text decode="true">{{item.summary}}</text></view>
+                              </view>
+                            </view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                        </navigator>
+                    </view>
                 </view>
             </view>
         </view>
@@ -42,8 +50,7 @@
 
 
 
-
-        <view class="weui-footer weui-footer_fixed-bottom">
+        <view class="weui-footer " >
             <view class="weui-footer__links">
                 <navigator url="" class="weui-footer__link">{{copyright.name}}</navigator>
             </view>

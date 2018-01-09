@@ -58,7 +58,9 @@ export class AppBase{
       /**
        * 用户点击右上角分享
        */
-      onShareAppMessage: base.onShareAppMessage
+      onShareAppMessage: base.onShareAppMessage,
+
+      gotoDoctor: base.gotoDoctor
     }
   }
   log(){
@@ -93,5 +95,11 @@ export class AppBase{
   setMyData(obj){
     console.log(this.Page);
     this.Page.setData(obj);
+  }
+  gotoDoctor(e){
+    var id=e.currentTarget.id;
+    wx.redirectTo({
+      url: '../doctor/doctor?id='+id,
+    })
   }
 } 

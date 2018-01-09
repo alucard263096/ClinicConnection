@@ -15,3 +15,10 @@
 page{
   background-color: #F2F2F2;
 }
+.weui-footer{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.weui-footer_fixed-bottom{
+    margin-bottom: 0;
+}
