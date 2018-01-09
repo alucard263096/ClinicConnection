@@ -1,0 +1,4 @@
+<!--pages/home/home.wxml-->
+<text>pages/home/home.wxml</text>
+<button bindtap='bindShowName'>Show Name</button>
+<text>{{name}}</text>
