@@ -1,8 +1,13 @@
+import { ApiConfig } from "../apis/apiconfig.js";
+import { ApiUtil } from "../apis/apiutil.js";
+
 export class AppBase{
   app=null;
   options=null;
-  data={};
+  data = { uploadpath: ApiConfig.GetUploadPath(),
+    copyright:{name:"医诊互联",website:"hss.com"}};
   Page=null;
+  util=ApiUtil;
   constructor(){
     this.app=getApp();
     this.me=this;

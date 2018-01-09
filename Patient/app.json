@@ -6,8 +6,40 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarBackgroundColor": "#FF5155",
+    "navigationBarTitleText": "医诊互联求诊",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#FF5155",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/home.png",
+        "selectedIconPath": "images/icons/home-a.png"
+      },
+      {
+        "text": "医生",
+        "pagePath": "pages/doctor/doctor",
+        "iconPath": "images/icons/doctor.png",
+        "selectedIconPath": "images/icons/doctor-a.png"
+      },
+      {
+        "text": "预约",
+        "pagePath": "pages/booking/booking",
+        "iconPath": "images/icons/booking.png",
+        "selectedIconPath": "images/icons/booking-a.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/me/me",
+        "iconPath": "images/icons/me.png",
+        "selectedIconPath": "images/icons/me-a.png"
+      }
+    ]
   }
 }

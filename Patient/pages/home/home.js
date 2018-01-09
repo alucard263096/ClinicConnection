@@ -1,5 +1,9 @@
 // pages/home/home.js
-import { AppBase} from "../../App/AppBase.js";
+import { AppBase} from "../../app/AppBase.js";
+import { ApiConfig } from "../../apis/apiconfig.js";
+import { ClinicApi } from "../../apis/clinic.api.js";
+var WxParse = require('../../wxParse/wxParse.js');
+
 class Home extends AppBase{
  constructor(){
    super();
@@ -17,10 +21,23 @@ class Home extends AppBase{
  bbb(){
    console.log("bbbb");
  }
-  onLoad(options){
-    super.onLoad(options);
+ onLoad(options) {
     this.Base.Page = this;
+
+    super.onLoad(options);
     console.log("in home");
+    if(options.unicode==undefined){
+      ApiConfig.SetUnicode("vista");
+    }else{
+      ApiConfig.SetUnicode(options.unicode);
+    }
+    var clinicapi=new ClinicApi();
+    var that=this;
+    clinicapi.detail({},function(data){
+      data.content = that.Base.util.HtmlDecode(data.content);
+      WxParse.wxParse('content', 'html', data.content, that, 10);
+      that.setData({clinic:data});
+    });
   }
 }
 var home = new Home();

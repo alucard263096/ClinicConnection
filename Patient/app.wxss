@@ -1,7 +1,7 @@
 /**app.wxss**/
 @import "/style/fontawesome.wxss";
 @import "/style/weui.wxss";
-
+@import "/wxParse/wxParse.wxss";
 
 .container {
   height: 100%;
