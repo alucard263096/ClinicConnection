@@ -72,7 +72,7 @@ export class AppBase{
     console.log("yeah!");
   }
   onLoad(options){
-    this.options=options;
+    this.Base.options=options;
     console.log(options);
     console.log("onload");
   }
@@ -100,6 +100,9 @@ export class AppBase{
   setMyData(obj){
     console.log(this.Page);
     this.Page.setData(obj);
+  }
+  getMyData() {
+    return this.Page.data;
   }
   gotoDoctor(e){
     var id=e.currentTarget.id;
