@@ -24,7 +24,9 @@ class Order extends AppBase {
     var oneDayLong = 24 * 60 * 60 * 1000; 
     var startmonday = nowTime - (day - 1) * oneDayLong;
     var weekcount=0;
-    this.Base.setMyData({ startmonday: startmonday, weekcount: weekcount, description:""});
+    this.Base.setMyData({
+      startmonday: startmonday, weekcount: weekcount, description: "",
+      photos: []});
 
     
     doctorApi.detail({ id: doctor_id }, function (data) {
@@ -80,8 +82,8 @@ class Order extends AppBase {
     var dateinfo = target;
     this.Base.setMyData({ dateinfo: dateinfo});
   }
-  changedescription(e) {
-    this.Base.setMyData({ description: e.detail.value });
+  changeDescription(e) {
+    this.setData({ description: e.detail.value });
   }
 
 }

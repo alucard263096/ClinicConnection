@@ -70,7 +70,7 @@
 
     <view class="weui-cells__title">确认信息</view>
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input"> 
+      <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
           <view class="weui-label">预约时间</view>
         </view>
@@ -78,11 +78,38 @@
           <input class="weui-input" placeholder="请选择预约时间" disabled='disabled' value='{{dateinfo.date}}{{dateinfo!=undefined?" ":""}}{{dateinfo.time}}' />
         </view>
       </view>
-      <view class="weui-cell">
+      <view class="weui-cell ">
         <view class="weui-cell__bd">
           <textarea class="weui-textarea" placeholder="详细补充你的求诊内容" style="height: 3.3em" bindinput="changeDescription" />
           <view class="weui-textarea-counter">{{description.length}}/200</view>
         </view>
+      </view>
+      <view class="weui-cells">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <view class="weui-uploader">
+              <view class="weui-uploader__hd">
+                <view class="weui-uploader__title">图片信息</view>
+                <view class="weui-uploader__info">{{photos.length}}/8</view>
+              </view>
+              <view class="weui-uploader__bd">
+                <view class="weui-uploader__files" id="uploaderFiles">
+                  <block wx:for-items="{{photos}}" wx:key="{{index}}">
+                    <view class="weui-uploader__file" bindtap="deleteImage" id="photo_{{item}}">
+                      <image class="weui-uploader__img" src="{{UploadFolderUrl}}/help/{{item}}" mode="aspectFill" />
+                    </view>
+                  </block>
+                </view>
+                <view class="weui-uploader__input-box" wx:if="{{photos.length<8}}">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view style='float:right;margin-right:20px;margin-top:20px;' wx:if="{{photos.length>0}}" bindtap="previewImage">
+        预览
       </view>
     </view>
 
