@@ -1,0 +1,11 @@
+/* pages/doctorlist/doctorlist.wxss */
+.department{
+  text-align: center;
+  padding:2vh;
+  font-size: 80%;
+  border-bottom: 1px solid #d9d9d9;
+}
+.active{
+  background-color:white;
+  border-left: 2px solid #FF5155;
+}

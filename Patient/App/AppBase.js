@@ -2,6 +2,8 @@ import { ApiConfig } from "../apis/apiconfig.js";
 import { ApiUtil } from "../apis/apiutil.js";
 
 export class AppBase{
+
+  static QQMAP = null;
   app=null;
   options=null;
   data = { uploadpath: ApiConfig.GetUploadPath(),
@@ -60,7 +62,10 @@ export class AppBase{
        */
       onShareAppMessage: base.onShareAppMessage,
 
-      gotoDoctor: base.gotoDoctor
+      gotoDoctor: base.gotoDoctor,
+      viewPhoto: base.viewPhoto,
+      phoneCall: base.phoneCall,
+      openMap: base.openMap
     }
   }
   log(){
@@ -68,7 +73,7 @@ export class AppBase{
   }
   onLoad(options){
     this.options=options;
-    console.log(this);
+    console.log(options);
     console.log("onload");
   }
   onReady() {
@@ -102,4 +107,53 @@ export class AppBase{
       url: '../doctor/doctor?id='+id,
     })
   }
+  viewPhoto(e){
+    var img=e.currentTarget.id;
+    wx.previewImage({
+      urls: [img],
+    })
+  }
+  phoneCall(e) {
+    var tel = e.currentTarget.id;
+    wx.makePhoneCall({
+      phoneNumber: tel
+    })
+  }
+  openMap(e) {
+    if(AppBase.QQMAP==null){
+      var QQMapWX = require('../libs/qqmap/qqmap-wx-jssdk.js');
+      AppBase.QQMAP = new QQMapWX({
+        key: 'IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5'
+      });
+    }
+    var address = e.currentTarget.id;
+    AppBase.QQMAP.geocoder({
+      address: address,
+      success: function (res) {
+        if(res.status==0){
+          var lat = res.result.location.lat;
+          var lng = res.result.location.lng;
+
+          wx.openLocation({
+            type: 'gcj02', // 默认为 wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标  
+            address: address,
+            latitude: lat,
+            longitude: lng,
+            success: function (res) {
+
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        console.log(res);
+      },
+      complete: function (res) {
+        console.log(res);
+      }
+    });
+   
+
+    
+  }  
 } 

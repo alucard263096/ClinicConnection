@@ -1,0 +1,10 @@
+/* pages/order/order.wxss */
+.placeholder{
+  padding: 1vh;
+}
+.timerow {
+  border-bottom: 1px solid #f2f2f2;
+}
+.timecell {
+  border-left: 1px solid #f2f2f2;
+}

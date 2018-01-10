@@ -1,66 +1,36 @@
-// pages/doctor/doctor.js
-Page({
+import { AppBase } from "../../app/AppBase";
+import { ApiConfig } from "../../apis/apiconfig";
+import { DoctorApi } from "../../apis/doctor.api";
 
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+class Doctor extends AppBase {
+  constructor() {
+    super();
   }
-})
+  onLoad(options) {
+    this.Base.Page = this;
+    options.id=1;
+    super.onLoad(options);
+    var id=options.id;
+    ApiConfig.SetUnicode("vista");
+
+    var doctorApi = new DoctorApi();
+    var that = this;
+    doctorApi.detail({ id: id}, function (data) {
+      that.setData({ doctor: data});
+    });
+  }
+  gotoOrder(e) {
+    var t=e.currentTarget.id;
+    console.log(this.options);
+    wx.navigateTo({
+      url: '../order/order?doctor_id='+this.options.id+"&t="+t,
+    })
+  }
+}
+
+var doctor = new Doctor();
+var body = doctor.generateBodyJson();
+body.onLoad = doctor.onLoad; 
+body.setSelectedDepartment = doctor.setSelectedDepartment;
+body.gotoOrder = doctor.gotoOrder;
+Page(body)

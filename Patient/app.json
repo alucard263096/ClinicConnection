@@ -1,9 +1,11 @@
 {
   "pages": [
+    "pages/order/order",
+    "pages/doctor/doctor",
     "pages/home/home",
+    "pages/doctorlist/doctorlist",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/doctor/doctor"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
