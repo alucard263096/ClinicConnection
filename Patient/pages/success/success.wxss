@@ -1,0 +1,4 @@
+/* pages/success/success.wxss */
+page{
+    background-color: #FFFFFF;
+}

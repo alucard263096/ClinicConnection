@@ -1,0 +1,139 @@
+<!--pages/order/order.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+          <image src="{{uploadpath}}doctor/{{doctor.photo}}" style="width: 20vw; height: 20vw; display: block;border-radius:10vw;" />
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{doctor.name}}</view>
+          <view style="font-size: 13px;color: #888888;">{{doctor.position}}</view>
+          <view style="font-size: 13px;color: #888888;">{{doctor.qualification}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">选择预约时间</view>
+    <view class="weui-cells weui-cells_after-title" style='text-align:center;'>
+      <view class="weui-flex">
+        <view style='padding-left:5vw;padding-right:5vw;' bindtap='prevWeek'>
+          <view class="placeholder">
+            <text class='fa fa-angle-left'></text>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">{{nowweekstr}}</view>
+        </view>
+        <view style='padding-left:5vw;padding-right:5vw;' bindtap='nextWeek'>
+          <view class="placeholder">
+            <text class='fa fa-angle-right'></text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex timerow">
+        <view class="weui-flex__item">
+          <view class="placeholder"></view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">一</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">二</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">三</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">四</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">五</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">六</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">日</view>
+        </view>
+      </view>
+      <view wx:for="{{timetable}}" wx:for-item="table" wx:key="t" class="weui-flex timerow" style='font-size:60%;'>
+        <view class="weui-flex__item timecell">
+          <view class="placeholder">{{table.name}}</view>
+        </view>
+        <view wx:for="{{table.schedule}}" wx:for-item="schedule" wx:key="d" class="weui-flex__item timecell {{schedule.count<0?'gray':''}} {{schedule.count>=0?'white':''}} {{schedule.count>=1?'yellow':''}}  {{schedule.count>=3?'orange':''}} {{schedule.count>=5?'red':''}} {{dateinfo.date==schedule.date&&dateinfo.val==table.val?'selected':''}}"
+          data-date="{{schedule.date}}" data-time="{{table.name}}" data-val="{{table.val}}" data-count="{{schedule.count}}" bindtap="selectDate">
+          <view class="placeholder">{{schedule.count>0?schedule.count+"人":""}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">确认信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">预约时间</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请选择预约时间" disabled='disabled' value='{{dateinfo.date}}{{dateinfo!=undefined?" ":""}}{{dateinfo.time}}' />
+        </view>
+      </view>
+      <view class="weui-cell ">
+        <view class="weui-cell__hd">
+          <view class="weui-label">问题描述</view>
+        </view>
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="详细补充你的求诊内容" maxlength='200' style="height: 3.3em" bindinput="changeDescription" />
+          <view class="weui-textarea-counter">{{description.length}}/200</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class="weui-uploader">
+            <view class="weui-uploader__hd">
+              <view class="weui-uploader__title">图片信息</view>
+              <view class="weui-uploader__info">
+                <text wx:if="{{photos.length>0}}" bindtap="previewPhotos">预览 </text>{{photos.length}}/8</view>
+            </view>
+            <view class="weui-uploader__bd">
+              <view class="weui-uploader__files" id="uploaderFiles">
+                <block wx:for-items="{{photos}}" wx:key="{{index}}">
+                  <view class="weui-uploader__file" bindtap="deleteImage" id="photo_{{item}}">
+                    <image class="weui-uploader__img" src="{{uploadpath}}/order/{{item}}" mode="aspectFill" />
+                  </view>
+                </block>
+                <view class="weui-uploader__input-box" wx:if="{{photos.length<8}}">
+                  <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+
+
+      </view>
+      <view class="weui-cell ">
+        <view class="weui-cell__hd">
+          <view class="weui-label">联系方式</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="请预留您的联系方式" maxlength='30' bindinput='inputContact' value='{{contact}}' />
+        </view>
+      </view>
+
+    </view>
+
+
+    <view class="page__bd page__bd_spacing" style='padding:2vh;'>
+
+        <button class="weui-btn" bindtap='submitOrder' id="W" wx:if="{{doctor.active_word_query}}">预约图文咨询(￥{{doctor.price_word_query}})</button>
+        <button class="weui-btn" bindtap='submitOrder' id="V" wx:if="{{doctor.active_voice_query}}">预约语音咨询(￥{{doctor.price_voice_query}})</button>
+        <button class="weui-btn" bindtap='submitOrder' id="S" type="primary" wx:if="{{doctor.active_video_query}}">预约视频咨询(￥{{doctor.price_video_query}})</button>
+
+    </view>
+
+    
+
+  </view>
+</view>

@@ -16,7 +16,7 @@
             </view>
             <view class="weui-media-box weui-media-box_small-appmsg"  wx:if="{{department.doctors.length>0}}">
               <view class="weui-cells weui-cells_in-small-appmsg">
-                <navigator wx:for="{{department.doctors}}" wx:key="key" bindtap='gotoDoctor' url="../doctor/doctor?id={{item.id}}" open-type='navigate' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <navigator wx:for="{{department.doctors}}" wx:key="key" url="../doctor/doctor?id={{item.id}}" open-type='navigate' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                   <view class="weui-cell__hd">
                     <image src="{{uploadpath}}doctor/{{item.photo}}" style="border-radius:10vw; width: 20vw;height: 20vw;margin-right: 5px" />
                   </view>

@@ -1,17 +1,17 @@
 {
   "pages": [
+    "pages/home/home",
+    "pages/success/success",
     "pages/order/order",
+    "pages/schedule/schedule",
     "pages/signup/signup",
     "pages/doctor/doctor",
-    "pages/home/home",
     "pages/doctorlist/doctorlist",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/orderdetail/orderdetail"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#FF5155",
     "navigationBarTitleText": "医诊互联求诊",
     "navigationBarTextStyle": "white"
   },

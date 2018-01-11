@@ -67,7 +67,9 @@ export class AppBase{
       gotoDoctor: base.gotoDoctor,
       viewPhoto: base.viewPhoto,
       phoneCall: base.phoneCall,
-      openMap: base.openMap
+      openMap: base.openMap,
+      backPage: base.backPage,
+      backHome:base.backHome
     }
   }
   log(){
@@ -83,10 +85,11 @@ export class AppBase{
     var options = this.options;
     if (options.unicode == undefined) {
       ApiConfig.SetUnicode("vista");
+      ApiConfig.SetToken("oo7cm0Rf0NNG4zqieBcS4LxJv_9E");
     } else {
       ApiConfig.SetUnicode(options.unicode);
     }
-    if(ApiConfig.TOKEN!=""){
+    if (this.isLogined()){
       return;
     }
     wx.login({
@@ -267,6 +270,16 @@ export class AppBase{
   askLogin(){
     wx.navigateTo({
       url: '/pages/signup/signup',
+    })
+  }
+  backPage(){
+    wx.navigateBack({
+      
+    });
+  }
+  backHome(){
+    wx.switchTab({
+      url: '/pages/home/home',
     })
   }
 } 

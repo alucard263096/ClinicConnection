@@ -7,8 +7,8 @@ class Doctor extends AppBase {
     super();
   }
   onLoad(options) {
+    console.log(options);
     this.Base.Page = this;
-    options.id=1;
     super.onLoad(options);
     var id=options.id;
 
@@ -20,7 +20,7 @@ class Doctor extends AppBase {
   }
   gotoOrder(e) {
     wx.navigateTo({
-      url: '../order/order?doctor_id='+this.options.id,
+      url: '../schedule/schedule?doctor_id='+this.options.id,
     })
   }
 }
