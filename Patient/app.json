@@ -1,11 +1,13 @@
 {
   "pages": [
     "pages/order/order",
+    "pages/signup/signup",
     "pages/doctor/doctor",
     "pages/home/home",
     "pages/doctorlist/doctorlist",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/orderdetail/orderdetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,7 +34,7 @@
         "selectedIconPath": "images/icons/doctor-a.png"
       },
       {
-        "text": "预约",
+        "text": "会诊室",
         "pagePath": "pages/booking/booking",
         "iconPath": "images/icons/booking.png",
         "selectedIconPath": "images/icons/booking-a.png"

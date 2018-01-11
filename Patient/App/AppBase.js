@@ -1,8 +1,10 @@
 import { ApiConfig } from "../apis/apiconfig.js";
 import { ApiUtil } from "../apis/apiutil.js";
+import { MemberApi } from "../apis/member.api.js";
+import { WechatApi } from "../apis/wechat.api";
 
 export class AppBase{
-
+  static MemberInfo=null;
   static QQMAP = null;
   app=null;
   options=null;
@@ -75,6 +77,39 @@ export class AppBase{
     this.Base.options=options;
     console.log(options);
     console.log("onload");
+    this.Base.setBasicInfo();
+  }
+  setBasicInfo(){
+    var options = this.options;
+    if (options.unicode == undefined) {
+      ApiConfig.SetUnicode("vista");
+    } else {
+      ApiConfig.SetUnicode(options.unicode);
+    }
+    if(ApiConfig.TOKEN!=""){
+      return;
+    }
+    wx.login({
+
+      success: res => {
+        // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        var wechatapi = new WechatApi();
+        wechatapi.decryption({ code: res.code, grant_type: "authorization_code" }, function (data) {
+          console.log(data);
+          data = JSON.parse(data);
+          console.log(data);
+          ApiConfig.SetToken(data.openid);
+          var memberApi=new MemberApi();
+          memberApi.info({},function(data){
+            if(data!=false){
+              AppBase.MemberInfo=data;
+            }else{
+              console.log("no logined");
+            }
+          },false);
+        }, false);
+      }
+    })
   }
   onReady() {
     console.log("onReady");
@@ -98,7 +133,7 @@ export class AppBase{
     console.log("onShareAppMessage");
   }
   setMyData(obj){
-    console.log(this.Page);
+    console.log(obj);
     this.Page.setData(obj);
   }
   getMyData() {
@@ -114,6 +149,16 @@ export class AppBase{
     var img=e.currentTarget.id;
     wx.previewImage({
       urls: [img],
+    })
+  }
+  viewGallary(modul,photos){
+    var nphotos=[];
+    for(var i=0;i<photos.length;i++){
+      nphotos.push(ApiConfig.GetUploadPath()+modul+"/"+photos[i]);
+    }
+    console.log(nphotos);
+    wx.previewImage({
+      urls: nphotos,
     })
   }
   phoneCall(e) {
@@ -155,8 +200,73 @@ export class AppBase{
         console.log(res);
       }
     });
-   
-
-    
-  }  
+  }
+  uploadImage(modul,callback){
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        console.log(res.tempFilePaths);
+        //that.setData({
+        //  photos: that.data.photos.concat(res.tempFilePaths)
+        //});
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: ApiConfig.GetFileUploadAPI(), //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            'module': modul,
+            "field": "file"
+          },
+          success: function (res) {
+            console.log(res);
+            var data = res.data
+            if (data.substr(0, 7) == "success") {
+              data = data.split("|");
+              var photo = data[2];
+              callback(photo);
+            } else {
+              wx.showToast({
+                title: '上传失败，请重试',
+                icon: 'warn',
+                duration: 2000
+              })
+            }
+            //do something
+          }
+        });
+      }
+    })
+  }
+  info(message){
+    wx.showModal({
+      title: '提示',
+      content: message,
+      showCancel: false
+    })
+  }
+  warning(message) {
+    wx.showModal({
+      title: '警告',
+      content: message,
+      showCancel: false
+    })
+  }
+  error(message) {
+    wx.showModal({
+      title: '错误',
+      content: message,
+      showCancel:false
+    })
+  }
+  isLogined(){
+     return AppBase.MemberInfo!=null;
+  }
+  askLogin(){
+    wx.navigateTo({
+      url: '/pages/signup/signup',
+    })
+  }
 } 

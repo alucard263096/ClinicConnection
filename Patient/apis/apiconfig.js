@@ -11,13 +11,18 @@ export class ApiConfig{
   static GetHeader(){
     var headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
-      'UNICODE': ApiConfig.UNICODE
+      'UNICODE': ApiConfig.UNICODE,
+      'TOKEN': ApiConfig.TOKEN
     };
     return headers;
   }
   static UNICODE="";
   static SetUnicode(unicode){
     ApiConfig.UNICODE=unicode;
+  }
+  static TOKEN = "";
+  static SetToken(token) {
+    ApiConfig.TOKEN = token;
   }
 
   static showLoadingCounter = 0;

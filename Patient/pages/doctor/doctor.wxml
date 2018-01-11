@@ -34,11 +34,7 @@
 
 
     <view class="page__bd page__bd_spacing" style='padding:2vh;'>
-
-        <button class="weui-btn" bindtap='gotoOrder' id="w" wx:if="{{doctor.active_word_query}}">预约图文咨询(￥{{doctor.price_word_query}})</button>
-        <button class="weui-btn" bindtap='gotoOrder' id="v" wx:if="{{doctor.active_voice_query}}">预约语音咨询(￥{{doctor.price_voice_query}})</button>
-        <button class="weui-btn" bindtap='gotoOrder' id="s" type="primary" wx:if="{{doctor.active_video_query}}">预约视频咨询(￥{{doctor.price_video_query}})</button>
-
+        <button class="weui-btn" bindtap='gotoOrder' type="primary" wx:if="{{doctor.active_video_query}}">立即预约</button>
     </view>
 
 </view>

@@ -11,7 +11,6 @@ class Doctor extends AppBase {
     options.id=1;
     super.onLoad(options);
     var id=options.id;
-    ApiConfig.SetUnicode("vista");
 
     var doctorApi = new DoctorApi();
     var that = this;
@@ -20,10 +19,8 @@ class Doctor extends AppBase {
     });
   }
   gotoOrder(e) {
-    var t=e.currentTarget.id;
-    console.log(this.options);
     wx.navigateTo({
-      url: '../order/order?doctor_id='+this.options.id+"&t="+t,
+      url: '../order/order?doctor_id='+this.options.id,
     })
   }
 }
