@@ -137,6 +137,16 @@ export class AppBase{
   }
   onShareAppMessage() {
     console.log("onShareAppMessage");
+    return {
+      path: '/pages/home/home?unicode='+ApiConfig.UNICODE,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  
   }
   setMyData(obj){
     console.log(obj);
