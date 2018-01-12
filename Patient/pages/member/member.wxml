@@ -1,0 +1,57 @@
+<view class="page">
+    <view class="page__bd">
+
+        <view class="weui-cells__title">个人管理</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/health/health" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-user'></view>
+                <view class="weui-cell__bd">个人健康</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <navigator url="/pages/orderlist/orderlist" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-bars'></view>
+                <view class="weui-cell__bd">预约订单</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <navigator url="/pages/meeting/meeting" open-type='switchTab' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-bed'></view>
+                <view class="weui-cell__bd">会诊记录</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <navigator url="/pages/track/track" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-user-md'></view>
+                <view class="weui-cell__bd">浏览足迹</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+        </view>
+
+        <view class="weui-cells__title">关于我们</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/content/content?keycode=aboutus" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-bars'></view>
+                <view class="weui-cell__bd">关于{{copyright.name}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-phone'></view>
+                <view class="weui-cell__bd">客服支持</view>
+                <view class="weui-cell__ft"><contact-button></contact-button></view>
+            </view>
+            <navigator url="/pages/content/content?keycode=privacy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-list'></view>
+                <view class="weui-cell__bd">条款与声明</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+        </view>
+
+
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                    <navigator url="/pages/content/content?keycode=company" class="weui-footer__link">{{copyright.name}}</navigator>
+                </view>
+                <view class="weui-footer__text">Copyright © 2008-2018 {{copyright.website}}</view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -82,12 +82,15 @@ export class AppBase{
     this.Base.setBasicInfo();
   }
   setBasicInfo(){
+    var that=this;
     var options = this.options;
-    if (options.unicode == undefined) {
+    if (ApiConfig.UNICODE==""&&options.unicode == undefined) {
       ApiConfig.SetUnicode("vista");
-      ApiConfig.SetToken("oo7cm0Rf0NNG4zqieBcS4LxJv_9E");
+      //ApiConfig.SetToken("oo7cm0Rf0NNG4zqieBcS4LxJv_9E");
     } else {
-      ApiConfig.SetUnicode(options.unicode);
+      if (options.unicode != undefined){
+        ApiConfig.SetUnicode(options.unicode);
+      }
     }
     if (this.isLogined()){
       return;
@@ -106,6 +109,7 @@ export class AppBase{
           memberApi.info({},function(data){
             if(data!=false){
               AppBase.MemberInfo=data;
+              //that.onShow();
             }else{
               console.log("no logined");
             }
@@ -118,7 +122,6 @@ export class AppBase{
     console.log("onReady");
   }
   onShow() {
-    console.log("onShow");
   }
   onHide(){
     console.log("onHide");

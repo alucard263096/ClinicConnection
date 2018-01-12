@@ -27,11 +27,6 @@ class Home extends AppBase {
     super.onLoad(options);
     console.log("in home");
     console.log(options.unicode);
-    if (options.unicode == undefined) {
-      ApiConfig.SetUnicode("vista");
-    } else {
-      ApiConfig.SetUnicode(options.unicode);
-    }
     var clinicapi = new ClinicApi();
     var that = this;
     clinicapi.detail({}, function (data) {

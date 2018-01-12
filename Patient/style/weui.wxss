@@ -95,6 +95,7 @@ icon {
   color: inherit;
 }
 .weui-cell__ft_in-access {
+  content: ">";
   padding-right: 13px;
   position: relative;
 }

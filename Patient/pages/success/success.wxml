@@ -8,7 +8,7 @@
             <view class="weui-msg__title">支付成功</view>
             <view class="weui-msg__desc">请在预约时间后进入会诊室与医生进行直接会诊。</view>
             <view class="weui-msg__desc">如需变更，请在个人中心中与客服人员联系。</view>
-            <view class="weui-msg__desc">其它相关细则请参考<navigator url="/pages/context/context?keycode=serveragreement" class="weui-msg__link">医患会诊服务条款</navigator></view>
+            <view class="weui-msg__desc">其它相关细则请参考<navigator url="/pages/content/content?keycode=bookingagreement" class="weui-msg__link">医患会诊服务条款</navigator></view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">
@@ -19,7 +19,7 @@
         <view class="weui-msg__extra-area">
             <view class="weui-footer">
                 <view class="weui-footer__links">
-                    <navigator url="" class="weui-footer__link">{{copyright.name}}</navigator>
+                    <navigator url="/pages/content/content?keycode=company" class="weui-footer__link">{{copyright.name}}</navigator>
                 </view>
                 <view class="weui-footer__text">Copyright © 2008-2018 {{copyright.website}}</view>
             </view>

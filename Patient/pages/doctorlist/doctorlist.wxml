@@ -11,8 +11,8 @@
             </block>
           </view>
           <view class="weui-cell__bd" style='height:70vh;'>
-            <view class="weui-loadmore weui-loadmore_line" wx:if="{{department.doctors.length==0}}">
-                    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+            <view class="weui-loadmore " wx:if="{{department.doctors.length==0}}">
+                    暂无数据
             </view>
             <view class="weui-media-box weui-media-box_small-appmsg"  wx:if="{{department.doctors.length>0}}">
               <view class="weui-cells weui-cells_in-small-appmsg">

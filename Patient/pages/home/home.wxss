@@ -1,1 +1,5 @@
 /* pages/home/home.wxss */
+.weui-media-box__hd_in-appmsg{
+  width:unset;
+  height:unset;
+}

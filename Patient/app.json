@@ -1,8 +1,11 @@
 {
   "pages": [
     "pages/home/home",
-    "pages/success/success",
     "pages/order/order",
+    "pages/content/content",
+    "pages/member/member",
+    "pages/meeting/meeting",
+    "pages/success/success",
     "pages/schedule/schedule",
     "pages/signup/signup",
     "pages/doctor/doctor",
@@ -35,13 +38,13 @@
       },
       {
         "text": "会诊室",
-        "pagePath": "pages/booking/booking",
+        "pagePath": "pages/meeting/meeting",
         "iconPath": "images/icons/booking.png",
         "selectedIconPath": "images/icons/booking-a.png"
       },
       {
         "text": "我的",
-        "pagePath": "pages/me/me",
+        "pagePath": "pages/member/member",
         "iconPath": "images/icons/me.png",
         "selectedIconPath": "images/icons/me-a.png"
       }
