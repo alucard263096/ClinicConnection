@@ -11,7 +11,9 @@
     "pages/doctor/doctor",
     "pages/doctorlist/doctorlist",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/orderlist/orderlist",
+    "pages/track/track"
   ],
   "window": {
     "backgroundTextStyle": "light",

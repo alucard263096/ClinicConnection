@@ -1,0 +1,22 @@
+<!--pages/track/track.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells weui-cells_after-title">
+
+      <navigator wx:for="{{list}}" url="/pages/doctor/doctor?id={{item.id}}" class="weui-cell" wx:key="k">
+        <view class="weui-cell__hd">
+          <image src="{{uploadpath}}doctor/{{item.doctor_id_photo}}" style="width: 15vw; height: 15vw; display: block;border-radius:7.5vw;"></image>
+        </view>
+        <view class="weui-cell__bd" style='padding-left:10px;'>
+          <view>{{item.doctor_id_name}}</view>
+          <view style="font-size: 13px;color: #888888;">{{item.doctor_id_summary}}</view>
+        </view>
+      </navigator>
+
+    </view>
+    <view class="weui-loadmore " wx:if="{{list.length==0}}">
+      <view class="weui-loadmore__tips ">暂无数据</view>
+    </view>
+
+  </view>
+</view>

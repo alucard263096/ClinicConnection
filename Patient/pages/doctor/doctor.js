@@ -17,6 +17,11 @@ class Doctor extends AppBase {
     doctorApi.detail({ id: id}, function (data) {
       that.setData({ doctor: data});
     });
+
+    doctorApi.track({ doctor_id: id }, function (data) {
+      
+    },false);
+
   }
   gotoOrder(e) {
     wx.navigateTo({
