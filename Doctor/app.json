@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/signin/signin",
+    "pages/content/content",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "医诊互联",
+    "navigationBarTextStyle":"black"
+  }
+}
