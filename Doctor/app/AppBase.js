@@ -11,6 +11,7 @@ export class AppBase{
   constructor(){
     this.app=getApp();
     this.me=this;
+    ApiConfig.SetToken("10e991a4ca7a93c60794628c11edaea3");
   }
   generateBodyJson(){
     var base=this;

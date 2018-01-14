@@ -1,0 +1,85 @@
+<!--pages/meeting/meeting.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for-items="{{tabs}}" wx:key="{{index}}">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item.name}}
+            <view class="weui-badge" wx:if="{{index==0}}" >{{plist.length}}</view>
+            <view class="weui-badge" wx:if="{{index==1}}" >{{wlist.length}}</view>
+            <view class="weui-badge" wx:if="{{index==2}}" >{{clist.length}}</view></view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+<view class="weui-loadmore " wx:if="{{plist.length==0}}">
+            <view class="weui-loadmore__tips ">暂无数据</view>
+        </view>
+
+          <view class="weui-cells weui-cells_after-title">
+            <navigator  wx:for="{{plist}}" url="/pages/resulting/resulting?id={{item.id}}" class="weui-cell" wx:key="k" >
+              <view class="weui-cell__bd" style='padding-left:10px;'>
+                <view><text style='color: #888888;'>姓名：</text>{{item.member_id_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>会诊方式：</text>{{item.mtype_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
+                <view style="font-size: 13px;">{{item.description}}</view>
+              </view>
+              <view class="weui-cell__ft">{{item.status_name}}</view>
+            </navigator>
+          </view>
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+<view class="weui-loadmore " wx:if="{{wlist.length==0}}">
+            <view class="weui-loadmore__tips ">暂无数据</view>
+        </view>
+
+          <view class="weui-cells weui-cells_after-title">
+            <navigator  wx:for="{{wlist}}" url="/pages/resulting/resulting?id={{item.id}}" class="weui-cell" wx:key="k" >
+              <view class="weui-cell__bd" style='padding-left:10px;'>
+                <view><text style='color: #888888;'>姓名：</text>{{item.member_id_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>会诊方式：</text>{{item.mtype_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
+                <view style="font-size: 13px;">{{item.description}}</view>
+              </view>
+              <view class="weui-cell__ft">{{item.status_name}}</view>
+            </navigator>
+          </view>
+
+
+
+        </view>
+
+        <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+
+<view class="weui-loadmore " wx:if="{{clist.length==0}}">
+            <view class="weui-loadmore__tips ">暂无数据</view>
+        </view>
+
+          <view class="weui-cells weui-cells_after-title">
+            <navigator  wx:for="{{clist}}" url="/pages/resulting/resulting?id={{item.id}}" class="weui-cell" wx:key="k" >
+              <view class="weui-cell__bd" style='padding-left:10px;'>
+                <view><text style='color: #888888;'>姓名：</text>{{item.member_id_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>会诊方式：</text>{{item.mtype_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
+                <view style="font-size: 13px;">{{item.description}}</view>
+              </view>
+              <view class="weui-cell__ft">{{item.status_name}}</view>
+            </navigator>
+          </view>
+
+
+
+        </view>
+
+
+
+
+      </view>
+    </view>
+  </view>
+</view>

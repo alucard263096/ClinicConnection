@@ -1,14 +1,47 @@
 {
-  "pages":[
+  "pages": [
+    "pages/meeting/meeting",
     "pages/signin/signin",
     "pages/content/content",
     "pages/index/index",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "医诊互联",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#FF5155",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "会诊",
+        "pagePath": "pages/meeting/meeting",
+        "iconPath": "images/icons/meeting.png",
+        "selectedIconPath": "images/icons/meeting-a.png"
+      },
+      {
+        "text": "排班",
+        "pagePath": "pages/schedule/schedule",
+        "iconPath": "images/icons/schedule.png",
+        "selectedIconPath": "images/icons/schedule-a.png"
+      },
+      {
+        "text": "统计",
+        "pagePath": "pages/static/static",
+        "iconPath": "images/icons/static.png",
+        "selectedIconPath": "images/icons/static-a.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/doctor/doctor",
+        "iconPath": "images/icons/doctor.png",
+        "selectedIconPath": "images/icons/doctor-a.png"
+      }
+    ]
   }
 }

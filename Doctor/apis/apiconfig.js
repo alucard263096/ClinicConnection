@@ -1,6 +1,6 @@
 export class ApiConfig{
   static GetApiUrl() {
-    return "https://cmsdev.app-link.org/alucard263096/hssd/api/";
+    return "https://cmsdev.app-link.org/alucard263096/hss/api/";
   }
   static GetUploadPath() {
     return "https://cmsdev.app-link.org/alucard263096/hss/upload/";

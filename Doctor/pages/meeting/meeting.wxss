@@ -1,0 +1,17 @@
+/* pages/meeting/meeting.wxss */
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-navbar__slider{
+width:33.3vw;
+}
+
+
+.weui-navbar{
+  background-color: white;
+}
