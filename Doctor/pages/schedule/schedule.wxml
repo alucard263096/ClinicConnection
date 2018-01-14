@@ -1,0 +1,69 @@
+<!--pages/order/order.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title">设置排班 <button class="weui-btn mini-btn" type="default" size="mini" bindtap='copyLastweek' style='float:right'>复制上周</button></view>
+    <view class="weui-cells weui-cells_after-title" style='text-align:center;'>
+      <view class="weui-flex">
+        <view style='padding-left:5vw;padding-right:5vw;' bindtap='prevWeek'>
+          <view class="placeholder">
+            <text class='fa fa-angle-left'></text>
+          </view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">{{nowweekstr}}</view>
+        </view>
+        <view style='padding-left:5vw;padding-right:5vw;' bindtap='nextWeek'>
+          <view class="placeholder">
+            <text class='fa fa-angle-right'></text>
+          </view>
+        </view>
+      </view>
+      <view class="weui-flex timerow">
+        <view class="weui-flex__item">
+          <view class="placeholder"></view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">一</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">二</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">三</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">四</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">五</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">六</view>
+        </view>
+        <view class="weui-flex__item">
+          <view class="placeholder">日</view>
+        </view>
+      </view>
+      <view wx:for="{{timetable}}" wx:for-item="table" wx:key="t" class="weui-flex timerow" style='font-size:60%;'>
+        <view class="weui-flex__item timecell">
+          <view class="placeholder">{{table.name}}</view>
+        </view>
+        <view wx:for="{{table.schedule}}" wx:for-item="schedule" wx:key="d" class="weui-flex__item timecell {{schedule.count<0?'gray':''}} {{schedule.count>=0?'selected':''}} {{schedule.count>=1?'yellow':''}}  {{schedule.count>=3?'orange':''}} {{schedule.count>=5?'red':''}} }}"
+          data-date="{{schedule.date}}" data-time="{{table.name}}"  data-isouttime="{{schedule.isouttime}}"data-val="{{table.val}}" data-count="{{schedule.count}}" bindtap="selectDate">
+          <view class="placeholder">{{schedule.count>0?schedule.count+"人":""}}</view>
+        </view>
+      </view>
+    </view>
+
+
+
+    <view class="page__bd page__bd_spacing" style='padding:2vh;'>
+
+        <button class="weui-btn" bindtap='submitSchedule' type="primary" >更新排班</button>
+
+    </view>
+
+    
+
+  </view>
+</view>
