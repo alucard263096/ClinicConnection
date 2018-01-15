@@ -1,7 +1,11 @@
 {
   "pages": [
-    "pages/schedule/schedule",
     "pages/meeting/meeting",
+    "pages/doctor/doctor",
+    "pages/meetingrecord/meetingrecord",
+    "pages/orderlist/orderlist",
+    "pages/schedule/schedule",
+    "pages/static/static",
     "pages/signin/signin",
     "pages/content/content",
     "pages/index/index",

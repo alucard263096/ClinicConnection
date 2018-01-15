@@ -1,0 +1,42 @@
+<!--pages/meetingrecord/meetingrecord.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <block wx:for="{{list}}" wx:key="key" wx:if="{{item.meetings.length>0}}">
+      <view class="weui-cells__title">{{item.sdate}}
+      <text style='position:absolute;right:0;padding-right:5px;'>成功会诊{{item.totalcount}}人</text>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+
+        <navigator wx:for="{{item.meetings}}" url='/pages/resulting/resulting?id={{meeting.id}}' wx:for-item="meeting" class="weui-cell" wx:key="k">
+          <view class="weui-cell__bd">
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>会诊号：</text>{{meeting.mno}}
+            </view>
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>方式：</text>{{meeting.mtype_name}}
+            </view>
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>时间：</text>{{meeting.mdate}}
+            </view>
+            <view style="font-size: 13px;" wx:if="{{meeting.status=='E'}}">
+              <text style='color: #888888;'>服务态度：</text>{{meeting.assess_service}}分
+            </view>
+            <view style="font-size: 13px;" wx:if="{{meeting.status=='E'}}">
+              <text style='color: #888888;'>专业能力：</text>{{meeting.assess_technic}}分
+            </view>
+            <view style="font-size: 13px;" wx:if="{{meeting.status=='E'}}">
+              <text style='color: #888888;'>解决问题：</text>{{meeting.assess_solute}}分
+            </view>
+          </view>
+          <view class="weui-cell__ft {{meeting.status=='C'||meeting.status=='E'?'weui-form-preview__btn_primary':''}} {{meeting.status=='R'?'weui-form-preview__btn_danger':''}}">{{meeting.status_name}}
+          </view>
+        </navigator>
+
+  </view>
+  </block>
+        <view class="weui-loadmore " wx:if="{{list.length==0}}">
+            <view class="weui-loadmore__tips ">暂无数据</view>
+        </view>
+
+</view>
+</view>

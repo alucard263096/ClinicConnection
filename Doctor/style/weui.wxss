@@ -313,6 +313,9 @@ icon {
 .weui-form-preview__btn_primary {
   color: #0BB20C;
 }
+.weui-form-preview__btn_danger {
+  color: #FF5155;
+}
 .weui-cell_select {
   padding: 0;
 }

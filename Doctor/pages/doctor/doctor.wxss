@@ -1,0 +1,4 @@
+/* pages/doctor/doctor.wxss */
+.weui-cell__hd{
+  padding-right:5px;
+}

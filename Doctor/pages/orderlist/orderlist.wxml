@@ -1,0 +1,36 @@
+<!--pages/orderlist/orderlist.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <block wx:for="{{list}}" wx:key="key" wx:if="{{item.orders.length>0}}">
+      <view class="weui-cells__title">{{item.sdate}}
+      <text style='position:absolute;right:0;padding-right:5px;'>收入：￥{{item.totalamount}}</text>
+      </view>
+      <view class="weui-cells weui-cells_after-title">
+
+        <view wx:for="{{item.orders}}" wx:for-item="order" class="weui-cell" wx:key="k">
+          <view class="weui-cell__bd">
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>预约号：</text>{{order.orderno}}
+            </view>
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>方式：</text>{{order.booking_type_name}}
+            </view>
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>时间：</text>{{order.booking_date}}
+            </view>
+            <view style="font-size: 13px;">
+              <text style='color: #888888;'>金额：</text>￥{{order.amount}}
+            </view>
+          </view>
+          <view class="weui-cell__ft {{order.status=='S'?'weui-form-preview__btn_primary':''}} {{order.status=='R'?'weui-form-preview__btn_danger':''}}">{{order.status_name}}
+          </view>
+        </view>
+
+  </view>
+  </block>
+        <view class="weui-loadmore " wx:if="{{list.length==0}}">
+            <view class="weui-loadmore__tips ">暂无数据</view>
+        </view>
+
+</view>
+</view>

@@ -1,7 +1,7 @@
 <!--pages/orderlist/orderlist.wxml-->
 <view class="page">
   <view class="page__bd">
-    <block wx:for="{{list}}" wx:key="key">
+    <block wx:for="{{list}}" wx:key="key"  wx:if="{{item.orders.length>0}}">
       <view class="weui-cells__title">{{item.sdate}}</view>
       <view class="weui-cells weui-cells_after-title">
 

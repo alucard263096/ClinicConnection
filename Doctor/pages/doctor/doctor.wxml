@@ -1,0 +1,75 @@
+<!--pages/doctor/doctor.wxml-->
+<view class="page">
+  <view class="page__bd" style='padding-bottom:20px;'>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__hd" style="position: relative;margin-right: 10px;">
+          <image src="{{uploadpath}}doctor/{{doctor.photo}}" style="width: 20vw; height: 20vw; display: block;border-radius:10vw;" />
+        </view>
+        <view class="weui-cell__bd">
+          <view>{{doctor.name}}</view>
+          <view style="font-size: 13px;color: #888888;">{{doctor.position}}</view>
+          <view style="font-size: 13px;color: #888888;">{{doctor.qualification}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">定价管理</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_word_query=='Y'}}">
+                <view class='weui-cell__hd fa fa-commenting'> 图文咨询</view>
+                <view class="weui-cell__bd" style='text-align:right'>￥{{doctor.price_word_query}}</view>
+            </view>
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_voice_query=='Y'}}">
+                <view class='weui-cell__hd fa fa-microphone'> 语音咨询</view>
+                <view class="weui-cell__bd" style='text-align:right'>￥{{doctor.price_voice_query}}</view>
+            </view>
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_video_query=='Y'}}">
+                <view class='weui-cell__hd fa fa-video-camera'> 视频会诊</view>
+                <view class="weui-cell__bd" style='text-align:right'>￥{{doctor.price_video_query}}</view>
+            </view>
+        </view>
+
+    <view class="weui-cells__title">业务管理</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/orderlist/orderlist" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-bars'></view>
+                <view class="weui-cell__bd">预约记录</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <navigator url="/pages/meetingrecord/meetingrecord"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-bed'></view>
+                <view class="weui-cell__bd">会诊记录</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <navigator url="/pages/assess/assess" open-type='switchTab' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-comment'></view>
+                <view class="weui-cell__bd">评价记录</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+        </view>
+
+
+        <view class="weui-cells__title">关于我们</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/content/content?keycode=aboutus" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-bars'></view>
+                <view class="weui-cell__bd">关于{{copyright.name}}</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-phone'></view>
+                <view class="weui-cell__bd">客服支持</view>
+                <view class="weui-cell__ft"><contact-button></contact-button></view>
+            </view>
+            <navigator url="/pages/content/content?keycode=privacy" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-list'></view>
+                <view class="weui-cell__bd">条款与声明</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+        </view>
+
+  </view>
+
+
+</view>
