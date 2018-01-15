@@ -1,1 +1,32 @@
 /* pages/resulting/resulting.wxss */
+.name{
+  color:gray;
+}
+.message{
+  max-width: 60vw;
+  background-color:#1AAD19;
+  padding:1vh;
+  margin-top:1vh;
+  border-radius: 1vh;
+  color:white;
+}
+.weui-cell::before{
+  border-top:0px;
+}
+.pname{
+  text-align: right;
+  color:gray;
+  margin-right:10px;
+}
+.pmessage{
+  max-width: 60vw;
+  background-color:#fff;
+  padding:1vh;
+  margin-top:1vh;
+  border-radius: 1vh;
+  margin-left:20vw;
+  margin-right:10px;
+}
+.weui-cells::after {
+  border-bottom: 0px;
+}
