@@ -34,7 +34,7 @@
 
 
     <view class="page__bd page__bd_spacing" style='padding:2vh;'>
-        <button class="weui-btn" bindtap='gotoOrder' type="primary" wx:if="{{doctor.active_video_query}}">立即预约</button>
+        <button class="weui-btn" bindtap='gotoOrder' type="primary" >立即预约</button>
     </view>
 
 </view>

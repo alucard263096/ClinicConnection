@@ -66,7 +66,8 @@ export class AppBase{
       phoneCall: base.phoneCall,
       openMap: base.openMap,
       backPage: base.backPage,
-      backHome:base.backHome
+      backHome:base.backHome,
+      logout: base.logout
     }
   }
   log(){
@@ -235,6 +236,11 @@ export class AppBase{
   backHome(){
     wx.switchTab({
       url: '/pages/home/home',
+    })
+  }
+  logout(){
+    wx.redirectTo({
+      url: '/pages/signin/signin',
     })
   }
 } 
