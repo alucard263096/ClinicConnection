@@ -14,7 +14,9 @@ class Meeting extends AppBase {
       tabs: ["进行中", "已完成"],
       activeIndex: 0,
       sliderOffset: 0,
-      sliderLeft: 0
+      sliderLeft: 0,
+      t1:0,
+      t2:0
     });
   }
   onShow() {
@@ -22,9 +24,23 @@ class Meeting extends AppBase {
     var meetingApi=new MeetingApi();
     meetingApi.list({"status":"W,P"},function(data){
       that.Base.setMyData({plist:data});
+      var t1=0;
+      for(var i=0;i<data.length;i++){
+        if(data[i].status=="P"){
+          t1++;
+        }
+      }
+      that.Base.setMyData({ t1: t1 });
     });
     meetingApi.list({ "status": "C,E" }, function (data) {
       that.Base.setMyData({ slist: data });
+      var t2 = 0;
+      for (var i = 0; i < data.length; i++) {
+        if (data[i].status == "C") {
+          t2++;
+        }
+      }
+      that.Base.setMyData({ t2: t2 });
     });
   }
   tabClick(e) {

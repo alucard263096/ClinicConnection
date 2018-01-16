@@ -5,7 +5,9 @@
       <view class="weui-navbar">
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
-            <view class="weui-navbar__title">{{item}}</view>
+            <view class="weui-navbar__title">{{item}}
+            <view class="weui-badge" wx:if="{{index==0&&t1>0}}" >{{t1}}</view>
+            <view class="weui-badge" wx:if="{{index==1&&t2>0}}" >{{t2}}</view></view>
           </view>
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
@@ -28,7 +30,7 @@
                 <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
                 <view style="font-size: 13px;">{{item.description}}</view>
               </view>
-              <view class="weui-cell__ft">{{item.status_name}}</view>
+              <view class="weui-cell__ft {{item.status=='P'?'weui-form-preview__btn_primary':''}}">{{item.status_name}}</view>
             </navigator>
           </view>
         </view>
@@ -49,7 +51,7 @@
                 <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
                 <view style="font-size: 13px;">{{item.description}}</view>
               </view>
-              <view class="weui-cell__ft">{{item.status_name}}</view>
+              <view class="weui-cell__ft {{item.status=='C'?'weui-form-preview__btn_primary':''}}">{{item.status_name}}</view>
             </navigator>
           </view>
 

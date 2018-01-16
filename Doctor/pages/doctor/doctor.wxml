@@ -42,11 +42,6 @@
                 <view class="weui-cell__bd">会诊记录</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
             </navigator>
-            <navigator url="/pages/assess/assess" open-type='switchTab' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-                <view class='weui-cell__hd fa fa-comment'></view>
-                <view class="weui-cell__bd">评价记录</view>
-                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
-            </navigator>
         </view>
 
 

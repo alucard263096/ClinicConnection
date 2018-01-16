@@ -1,15 +1,15 @@
 {
   "pages": [
+    "pages/signin/signin",
+    "pages/meeting/meeting",
     "pages/resulting/resulting",
     "pages/report/report",
-    "pages/meeting/meeting",
     "pages/livemeeting/livemeeting",
     "pages/doctor/doctor",
     "pages/meetingrecord/meetingrecord",
     "pages/orderlist/orderlist",
     "pages/schedule/schedule",
     "pages/static/static",
-    "pages/signin/signin",
     "pages/content/content",
     "pages/index/index",
     "pages/logs/logs"

@@ -90,7 +90,7 @@ class Signin extends AppBase {
       if (data.length == 1) {
         ApiConfig.SetToken(data[0].token);
         wx.switchTab({
-          url: '/pages/home/home',
+          url: '/pages/meeting/meeting',
         })
         return;
       }
@@ -108,7 +108,7 @@ class Signin extends AppBase {
             doctorApi.updatetoken({},function(data){
               ApiConfig.SetToken(data.return); 
               wx.switchTab({
-                url: '/pages/home/home',
+                url: '/pages/meeting/meeting',
               })
             });
           },

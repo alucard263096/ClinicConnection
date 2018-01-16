@@ -6,9 +6,9 @@
         <block wx:for-items="{{tabs}}" wx:key="{{index}}">
           <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
             <view class="weui-navbar__title">{{item.name}}
-            <view class="weui-badge" wx:if="{{index==0}}" >{{plist.length}}</view>
-            <view class="weui-badge" wx:if="{{index==1}}" >{{wlist.length}}</view>
-            <view class="weui-badge" wx:if="{{index==2}}" >{{clist.length}}</view></view>
+            <view class="weui-badge" wx:if="{{index==0&&plist.length>0}}" >{{plist.length}}</view>
+            <view class="weui-badge" wx:if="{{index==1&&wlist.length>0}}" >{{wlist.length}}</view>
+            <view class="weui-badge" wx:if="{{index==2&&clist.length>0}}" >{{clist.length}}</view></view>
           </view>
         </block>
         <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>

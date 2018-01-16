@@ -21,8 +21,9 @@ class Resulting extends AppBase {
     var meetingApi=new MeetingApi();
     meetingApi.detail({id:this.Base.options.id},function(data){
       that.Base.setMyData({ info: data });
-      if (data.status == 'P') {
-        that.Base.meetingMgr.createMeeting(data.id, that, that.Base.receiveData)
+      console.log(data.status);
+      if (data.status == 'P' || data.status == 'W') {
+        that.Base.meetingMgr.createMeeting(data.id, that, that.Base.receiveData);
       }else{
         var meetingApi = new MeetingApi();
         meetingApi.chating({ meeting_id: that.Base.options.id }, function (data) {
@@ -63,7 +64,11 @@ class Resulting extends AppBase {
   }
   receiveData(id,that,data){
     var nowchatdata=that.Base.getMyData().chats;
-    
+    if(data.length>0){
+      var info=that.Base.getMyData().info;
+      info.status='P';
+      that.Base.setMyData({info:info});
+    }
     if (data.length > 0 
       && (nowchatdata == undefined || data.length > nowchatdata.length )){
       var id = data[data.length - 1].id;
@@ -81,21 +86,26 @@ class Resulting extends AppBase {
     var meetingApi = new MeetingApi();
     var data=this.Base.getMyData();
     var message=data.message;
-    meetingApi.send({ meeting_id: this.Base.options.id, "type": "T", side: "D", message: message }, function (data) {
+    meetingApi.send({ meeting_id: this.Base.options.id, "type": "T", side: "P", message: message }, function (data) {
      
     });
     this.Base.setMyData({message:""});
   }
-  sendPicture(){
+  sendPicture() {
     var that=this;
     this.Base.uploadImage("meetinglog",function(data){
       var meetingApi = new MeetingApi();
-      meetingApi.send({ meeting_id: that.Base.options.id, "type": "P", side: "D", message: data }, function (data) {
+      meetingApi.send({ meeting_id: that.Base.options.id, "type": "P", side: "P", message: data }, function (data) {
 
       });
     });
   }
-  sendVoice(){
+  sendVoice() {
+    console.log(this.data.info.status);
+    if (this.data.info.mtype == "W") {
+      this.Base.warning("你的预约服务为图文会诊，不允许发送语音");
+      return;
+    }
     var that=this;
     wx.getSetting({
       success(res) {
@@ -126,7 +136,7 @@ class Resulting extends AppBase {
         if(that.confirmsend){
           that.uploadFile("meetinglog", tempFilePath, function (data) {
             var meetingApi = new MeetingApi();
-            meetingApi.send({ meeting_id: that.options.id, "type": "V", side: "D", message: data }, function (data) {
+            meetingApi.send({ meeting_id: that.options.id, "type": "V", side: "P", message: data }, function (data) {
 
               console.log("upload success");
             });
@@ -173,7 +183,15 @@ class Resulting extends AppBase {
       }
     })
   }
-  sendVideo(){
+  sendVideo() {
+    if (this.data.info.mtype == "W") {
+      this.Base.warning("你的预约服务为图文会诊，不允许发起视频会诊");
+      return;
+    }
+    if (this.data.info.mtype == "V") {
+      this.Base.warning("你的预约服务为语音会诊，不允许发起视频会诊");
+      return;
+    }
     var that=this;
     var meetingApi = new MeetingApi();
     meetingApi.send({ meeting_id: that.Base.options.id, "type": "S", side: "D", message: "meetingid_" + that.Base.options.id + "_" + (new Date().getTime().toString()) }, function (data) {
@@ -208,4 +226,5 @@ body.longtaptest = resulting.longtaptest;
 body.playRecord = resulting.playRecord; 
 body.gotoLiveMeeting = resulting.gotoLiveMeeting;
 body.completeMeeting = resulting.completeMeeting;
+
 Page(body)

@@ -50,7 +50,7 @@
         <view class="flex-1">
           诊断原因
         </view>
-        <view class="flex-3" >
+        <view class="flex-3">
           {{status!='P'?reason:""}}
           <textarea auto-height placeholder='请输入诊断原因' bindinput="inputReason" value='{{reason}}' wx:if="{{status=='P'}}"></textarea>
         </view>
@@ -73,36 +73,46 @@
           <textarea auto-height placeholder='请输入诊断结果' bindinput="inputResult" value='{{result}}' wx:if="{{status=='P'}}"></textarea>
         </view>
       </view>
-      <view class='flex-row' wx:if="{{status=='E'}}">
-        <view class="flex-1">
-          服务态度
-        </view>
-        <view class="flex-1">
-          {{assess_service}}分
-        </view>
-        <view class="flex-1">
-          专业能力
-        </view>
-        <view class="flex-1">
-          {{assess_technic}}分
-        </view>
-        <view class="flex-1">
-          解决问题
-        </view>
-        <view class="flex-1">
-          {{assess_solute}}分
-        </view>
-      </view>
-
     </view>
-
-    <view class="page__bd page__bd_spacing" style='padding:2vh;' wx:if="{{status=='P'}}">
-        <view class='flex-row' style='border:0px;'>
-          <view class='flex-1' style='border:0px;padding:1vh;'><button class="weui-btn" bindtap='tempSave' type="default"  >暂存报告</button></view>
-          <view class='flex-1' style='border:0px;padding:1vh;'><button class="weui-btn" bindtap='completeMeeting' type="primary" >完成会诊</button></view>
-        </view>
-    </view>
-
 
   </view>
+  <view class="weui-cells__title" wx:if="{{status=='E'}}">用户评分</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">服务态度</view>
+      </view>
+      <view class="weui-cell__bd">
+        <text wx:for="12345" wx:key="k" class='star {{assess_service>=item?"star-selected":""}} fa fa-star' id="{{item}}"></text>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">专业技能</view>
+      </view>
+      <view class="weui-cell__bd">
+        <text wx:for="12345" wx:key="k" class='star {{assess_technic>=item?"star-selected":""}} fa fa-star' id="{{item}}"></text>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">解决问题</view>
+      </view>
+      <view class="weui-cell__bd">
+        <text wx:for="12345" wx:key="k" class='star {{assess_solute>=item?"star-selected":""}} fa fa-star' id="{{item}}"></text>
+      </view>
+    </view>
+<view class="page__bd page__bd_spacing" style='padding:2vh;' wx:if="{{status=='P'}}">
+  <view class='flex-row' style='border:0px;'>
+    <view class='flex-1' style='border:0px;padding:1vh;'>
+      <button class="weui-btn" bindtap='tempSave' type="default">暂存报告</button>
+    </view>
+    <view class='flex-1' style='border:0px;padding:1vh;'>
+      <button class="weui-btn" bindtap='completeMeeting' type="primary">完成会诊</button>
+    </view>
+  </view>
+</view>
+
+
+</view>
 </view>
