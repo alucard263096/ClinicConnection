@@ -94,7 +94,7 @@ class Meeting extends AppBase {
       that.Base.setMyData({ plist: data });
       for(let item of data){
         if(item.status=="P"){
-          that.Base.meetingMgr.createMeeting(item.id);
+          //that.Base.meetingMgr.createMeeting(item.id);
         }
       }
     });
@@ -102,7 +102,7 @@ class Meeting extends AppBase {
       that.Base.setMyData({ wlist: data });
       for (let item of data) {
         if (item.status == "P") {
-          that.Base.meetingMgr.createMeeting(item.id);
+          //that.Base.meetingMgr.createMeeting(item.id);
         }
       }
     });
@@ -110,7 +110,7 @@ class Meeting extends AppBase {
       that.Base.setMyData({ clist: data });
       for (let item of data) {
         if (item.status == "P") {
-          that.Base.meetingMgr.createMeeting(item.id);
+          //that.Base.meetingMgr.createMeeting(item.id);
         }
       }
     });
@@ -137,5 +137,4 @@ body.onLoad = meeting.onLoad;
 body.onShow = meeting.onShow;
 body.tabClick = meeting.tabClick;
 body.onPullDownRefresh = meeting.onPullDownRefresh;
-
 Page(body)

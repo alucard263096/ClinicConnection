@@ -12,7 +12,7 @@ export class MeetingMgr{
         meetingapi.chating({ meeting_id: id},function(data){
           receivecallback(id, page, data);
         },false);
-      },1000);
+      },3000);
       var meeting = {
         id: id,
         task: task
@@ -22,6 +22,11 @@ export class MeetingMgr{
     } else {
       console.log(2);
       return this.meetings[id];
+    }
+  }
+  clearAllMeeting(){
+    for(let i in this.meetings){
+      clearInterval(this.meetings[i].task);
     }
   }
 }

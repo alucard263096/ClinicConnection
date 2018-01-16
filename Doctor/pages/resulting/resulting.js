@@ -24,8 +24,17 @@ class Resulting extends AppBase {
       that.Base.setMyData({ info: data });
       if (data.status == 'P') {
         that.Base.meetingMgr.createMeeting(data.id, that, that.Base.receiveData)
+      }else{
+        var meetingApi = new MeetingApi();
+        meetingApi.chating({ meeting_id: that.Base.options.id }, function (data) {
+          var id = data[data.length - 1].id;
+          that.Base.setMyData({ chats: data, latestid: "latest_" + id });
+        }, false);
       }
     });
+  }
+  onUnload(){
+    this.Base.meetingMgr.clearAllMeeting();
   }
   viewPhoto(){
     var data=this.Base.getMyData();
@@ -48,7 +57,16 @@ class Resulting extends AppBase {
     });
   }
   receiveData(id,that,data){
-    that.Base.setMyData({chats:data});
+    var nowchatdata=that.Base.getMyData().chats;
+    
+    if (data.length > 0 
+      && (nowchatdata == undefined || data.length > nowchatdata.length )){
+      var id = data[data.length - 1].id;
+      that.Base.setMyData({ chats: data, latestid: "latest_" + id });
+    }else{
+      that.Base.setMyData({ chats: data});
+    }
+    
   }
   inputMessage(e){
     var message=e.detail.value;
@@ -63,14 +81,126 @@ class Resulting extends AppBase {
     });
     this.Base.setMyData({message:""});
   }
+  sendPicture(){
+    var that=this;
+    this.Base.uploadImage("meetinglog",function(data){
+      var meetingApi = new MeetingApi();
+      meetingApi.send({ meeting_id: that.Base.options.id, "type": "P", side: "D", message: data }, function (data) {
+
+      });
+    });
+  }
+  sendVoice(){
+    var that=this;
+    wx.getSetting({
+      success(res) {
+        if (!res['scope.record']) {
+          // 设置询问
+          wx.authorize({
+            scope: 'scope.record',
+            success(res) {
+              that.Base.startRecord();
+            },
+            fail() { },
+            complete() { }
+          })
+        } else {
+          that.Base.startRecord();
+        }
+      }
+    })
+  }
+  confirmsend = false;
+  startRecord(){
+    this.confirmsend=false;
+    var that=this;
+    wx.startRecord({
+      success: function (res) {
+        console.log("record success");
+        var tempFilePath = res.tempFilePath;
+        if(that.confirmsend){
+          that.uploadFile("meetinglog", tempFilePath, function (data) {
+            var meetingApi = new MeetingApi();
+            meetingApi.send({ meeting_id: that.options.id, "type": "V", side: "D", message: data }, function (data) {
+
+              console.log("upload success");
+            });
+          });
+          console.log("sedn success");
+        }else{
+
+          console.log("sedn fail");
+        }
+      },
+      fail: function (res) {
+        //录音失败
+      }
+    });
+    wx.showModal({
+      title: '录音中，请控制在一分钟内',
+      confirmText:"发出",
+      success:function(res){
+        if (res.confirm) {
+          that.confirmsend=true;
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          that.Base.confirmsend = false;
+          console.log('用户点击取消')
+        }
+        wx.stopRecord();
+      }
+    })
+  }
+  playRecord(e){
+    var url=e.currentTarget.dataset.src;
+    console.log(url);
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        console.log(res.tempFilePath)
+        wx.playVoice({
+          filePath: res.tempFilePath,
+          complete: function (res) {
+            console.log('playVoice res')
+            console.log(res)
+          }
+        })
+      }
+    })
+  }
+  sendVideo(){
+    var that=this;
+    var meetingApi = new MeetingApi();
+    meetingApi.send({ meeting_id: that.Base.options.id, "type": "S", side: "D", message: "meetingid_" + that.Base.options.id + "_" + (new Date().getTime().toString()) }, function (data) {
+
+    });
+  }
+  gotoLiveMeeting(e){
+    var id=e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/livemeeting/livemeeting?id='+id,
+    })
+  }
+  completeMeeting(){
+    wx.navigateTo({
+      url: '/pages/report/report?id='+this.Base.options.id,
+    })
+  }
 }
 var resulting = new Resulting();
 var body = resulting.generateBodyJson();
 body.onLoad = resulting.onLoad;
-body.onShow = resulting.onShow; 
+body.onShow = resulting.onShow;
+body.onUnload = resulting.onUnload; 
 body.viewPhoto = resulting.viewPhoto; 
 body.startMeeting = resulting.startMeeting; 
-body.sendMessage = resulting.sendMessage;
+body.sendMessage = resulting.sendMessage; 
 body.inputMessage = resulting.inputMessage;
-
+body.sendPicture = resulting.sendPicture;
+body.sendVoice = resulting.sendVoice;
+body.sendVideo = resulting.sendVideo; 
+body.longtaptest = resulting.longtaptest;
+body.playRecord = resulting.playRecord; 
+body.gotoLiveMeeting = resulting.gotoLiveMeeting;
+body.completeMeeting = resulting.completeMeeting;
 Page(body)

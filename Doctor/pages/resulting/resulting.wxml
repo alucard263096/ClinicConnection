@@ -9,33 +9,60 @@
           <view class="weui-media-box__desc">
             <text>{{info.description}}</text>
           </view>
-          <view class="weui-media-box__desc" wx:if="{{info.contact.length>0}}">
-            <text>{{info.contact}}</text>
+          <view class="weui-media-box__desc" wx:if="{{info.photos.length>0}}" style="text-align:right">
+            <text bindtap='viewPhoto'>查看图片</text>
           </view>
         </view>
       </view>
 
     </view>
 
-    <view class="weui-cells weui-cells_after-title" style='background-color:transparent;margin-bottom:10vh;'>
-      <view class="weui-cell" wx:for="{{chats}}" wx:key="k"  style="font-size: 13px;">
-        <view class="weui-cell__hd" style="position: relative;margin-right: 10px;" wx:if="{{item.side=='D'}}">
-          <image src="{{uploadpath}}doctor/{{item.doctor_id_photo}}" style="width: 10vw; height: 10vw; display: block;border-radius:5vw;" />
-        </view>
-        <view class="weui-cell__bd" wx:if="{{item.side=='D'}}">
-          <view class='name'>{{item.doctor_id_name}}</view>
-          <view class='message'>{{item.message}}</view>
-        </view>
-        <view class="weui-cell__bd" wx:if="{{item.side=='P'}}">
-          <view class='pname'>{{item.member_id_name}}</view>
-          <view class='pmessage'>{{item.message}}</view>
-        </view>
-        <view class="weui-cell__hd" style="position: relative;" wx:if="{{item.side=='P'}}">
-          
-          <image src="{{uploadpath}}doctor/a.jpg" style="width: 10vw; height: 10vw; display: block;border-radius:5vw;" />
+
+    <scroll-view style='height:{{info.photos.length>0?"65":"70"}}vh' scroll-y="true" scroll-top='chattop' scroll-into-view="{{latestid}}">
+      <view class="weui-cells weui-cells_after-title" style='background-color:transparent;'>
+        <view class="weui-cell" wx:for="{{chats}}" wx:key="k" style="font-size: 13px;">
+          <view class="weui-cell__hd" style="position: relative;margin-right: 10px;" wx:if="{{item.side=='D'}}">
+            <image src="{{uploadpath}}doctor/{{item.doctor_id_photo}}" style="width: 10vw; height: 10vw; display: block;border-radius:5vw;" />
+          </view>
+          <view class="weui-cell__bd" wx:if="{{item.side=='D'}}">
+            <view class='name'>{{item.doctor_id_name}}</view>
+            <view class='msg' wx:if="{{item.type=='T'}}">
+              <button class="weui-btn" type="primary" size="mini">{{item.message}}</button>
+            </view>
+            <view class='msg message' wx:if="{{item.type=='P'}}">
+              <image mode='widthFix' class='img' src='{{uploadpath}}meetinglog/{{item.message}}' bindtap='viewPhoto' id="{{uploadpath}}meetinglog/{{item.message}}" />
+            </view>
+            <view class='msg' wx:if="{{item.type=='V'}}">
+              <button class="weui-btn" type="primary" size="mini" bindtap='playRecord' data-src="{{uploadpath}}meetinglog/{{item.message}}">点击播放语音</button>
+            </view>
+            <view class='msg' wx:if="{{item.type=='S'}}">
+              <button class="weui-btn" type="primary" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频会诊</button>
+            </view>
+          </view>
+          <view class="weui-cell__bd" wx:if="{{item.side=='P'}}">
+            <view class='pname'>{{item.member_id_name}}</view>
+            <view class='pmsg' wx:if="{{item.type=='T'}}">
+              <button class="weui-btn" type="default" size="mini">{{item.message}}{{item.message}}</button>
+            </view>
+            <view class='pmsg pmessage' wx:if="{{item.type=='P'}}">
+              <image mode='widthFix' class='img' src='{{uploadpath}}meetinglog/{{item.message}}' bindtap='viewPhoto' id="{{uploadpath}}meetinglog/{{item.message}}" />
+            </view>
+            <view class='pmsg' wx:if="{{item.type=='V'}}">
+              <button class="weui-btn" type="default" size="mini" bindtap='playRecord' data-src="{{uploadpath}}meetinglog/{{item.message}}">点击播放语音</button>
+            </view>
+            <view class='pmsg' wx:if="{{item.type=='S'}}">
+              <button class="weui-btn" type="default" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频会诊</button>
+            </view>
+          </view>
+          <view class="weui-cell__hd" style="position: relative;" wx:if="{{item.side=='P'}}">
+
+            <image src="{{uploadpath}}doctor/a.jpg" style="width: 10vw; height: 10vw; display: block;border-radius:5vw;" />
+          </view>
+          <view id="latest_{{item.id}}"></view>
         </view>
       </view>
-    </view>
+    </scroll-view>
+
 
     <view class="weui-msg__extra-area" style='margin-bottom:0px;'>
       <button class="weui-btn" bindtap='startMeeting' type="primary" wx:if="{{info.status=='W'}}" style='margin-left:15px;margin-right:15px;margin-bottom:15px;'>开始会诊</button>
@@ -47,18 +74,29 @@
               <input class="weui-input" placeholder="请输入文字" style='text-align:left' bindinput='inputMessage' value='{{message}}' />
             </view>
             <view class="weui-cell__ft" style='text-align:center;'>
-              <button class="weui-btn" type="primary" bindtap="sendMessage" size="mini">发送文字</button>
+              <button class="weui-btn" type="default" bindtap="sendMessage" size="mini">发送</button>
             </view>
           </view>
         </view>
-        <view class="weui-cells weui-cells_after-title">
-          <view class="weui-cell__bd">
-
+        <view class="weui-cells weui-cells_after-title" style='padding-top:2vw;'>
+          <view class="weui-flex">
+            <view class="weui-flex__item">
+              <button class="weui-btn" type="default" bindtap="sendPicture" size="mini">图片</button>
+            </view>
+            <view class="weui-flex__item">
+              <button class="weui-btn" type="default" bindtap='sendVoice' size="mini">语音</button>
+            </view>
+            <view class="weui-flex__item">
+              <button class="weui-btn" type="default" bindtap="sendVideo" size="mini">视频</button>
+            </view>
+            <view class="weui-flex__item">
+              <button class="weui-btn" type="warn" bindtap="completeMeeting" size="mini">完成会诊</button>
+            </view>
           </view>
         </view>
       </view>
     </view>
-
+    <button class="weui-btn" bindtap='completeMeeting' type="primary" wx:if="{{info.status=='C'||info.status=='E'}}" style='margin-left:15px;margin-right:15px;margin-bottom:15px;'>查看报告</button>
   </view>
 
 </view>

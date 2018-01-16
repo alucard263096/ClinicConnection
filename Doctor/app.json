@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/resulting/resulting",
+    "pages/report/report",
     "pages/meeting/meeting",
+    "pages/livemeeting/livemeeting",
     "pages/doctor/doctor",
     "pages/meetingrecord/meetingrecord",
     "pages/orderlist/orderlist",

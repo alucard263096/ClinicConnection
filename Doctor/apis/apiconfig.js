@@ -3,10 +3,16 @@ export class ApiConfig{
     return "https://cmsdev.app-link.org/alucard263096/hss/api/";
   }
   static GetUploadPath() {
-    return "https://cmsdev.app-link.org/alucard263096/hss/upload/";
-  }
+    return "https://cmsdev.app-link.org/Users/alucard263096/hss/upload/";
+  } 
   static GetFileUploadAPI() {
     return "https://cmsdev.app-link.org/alucard263096/hss/fileupload";
+}
+  static GetRTMPAPI(name) {
+    return "rtmp://video-center.alivecdn.com/HSSDoctor/";
+  }
+  static GetPUSHAPI() {
+    return "rtmp://live.app-link.org/HSSDoctor/";
   }
   static GetHeader(){
     var headers = {
