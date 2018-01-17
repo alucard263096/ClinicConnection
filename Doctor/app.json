@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/signin/signin",
     "pages/meeting/meeting",
+    "pages/signin/signin",
     "pages/resulting/resulting",
     "pages/report/report",
     "pages/livemeeting/livemeeting",
