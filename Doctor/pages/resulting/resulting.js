@@ -58,7 +58,7 @@ class Resulting extends AppBase {
       var info=that.Base.getMyData().info;
       info.status='P';
       that.Base.setMyData({info:info});
-      that.Base.meetingMgr.createMeeting(data.id,that, that.Base.receiveData);
+      that.Base.meetingMgr.createMeeting(info.id,that, that.Base.receiveData);
     });
   }
   receiveData(id,that,data){

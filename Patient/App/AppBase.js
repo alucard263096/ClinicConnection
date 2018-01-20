@@ -219,6 +219,7 @@ export class AppBase{
   }
   uploadImage(modul,callback){
     wx.chooseImage({
+      count:8,
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
@@ -227,10 +228,12 @@ export class AppBase{
         //that.setData({
         //  photos: that.data.photos.concat(res.tempFilePaths)
         //});
-        var tempFilePaths = res.tempFilePaths
+        var tempFilePaths = res.tempFilePaths;
+        for (var i = 0; i < tempFilePaths.length;i++){
+          
         wx.uploadFile({
           url: ApiConfig.GetFileUploadAPI(), //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
+          filePath: tempFilePaths[i],
           name: 'file',
           formData: {
             'module': modul,
@@ -252,7 +255,8 @@ export class AppBase{
             }
             //do something
           }
-        });
+          });
+        }
       }
     })
   }

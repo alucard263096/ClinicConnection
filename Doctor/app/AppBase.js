@@ -1,24 +1,26 @@
 import { ApiConfig } from "../apis/apiconfig.js";
 import { ApiUtil } from "../apis/apiutil.js";
 
-export class AppBase{
-  app=null;
-  options=null;
-  data = { uploadpath: ApiConfig.GetUploadPath(),
+export class AppBase {
+  app = null;
+  options = null;
+  data = {
+    uploadpath: ApiConfig.GetUploadPath(),
     rtmppath: ApiConfig.GetRTMPAPI(),
     pushpath: ApiConfig.GetPUSHAPI(),
-    copyright:{name:"医诊互联",website:"hss.com"}};
-  Page=null;
-  util=ApiUtil;
-  constructor(){
-    this.app=getApp();
-    this.me=this;
+    copyright: { name: "医诊互联", website: "hss.com" }
+  };
+  Page = null;
+  util = ApiUtil;
+  constructor() {
+    this.app = getApp();
+    this.me = this;
     //ApiConfig.SetToken("10e991a4ca7a93c60794628c11edaea3");
   }
-  generateBodyJson(){
-    var base=this;
+  generateBodyJson() {
+    var base = this;
     return {
-      Base:base,
+      Base: base,
       /**
        * 页面的初始数据
        */
@@ -68,35 +70,35 @@ export class AppBase{
       phoneCall: base.phoneCall,
       openMap: base.openMap,
       backPage: base.backPage,
-      backHome:base.backHome,
+      backHome: base.backHome,
       logout: base.logout
     }
   }
-  log(){
+  log() {
     console.log("yeah!");
   }
-  onLoad(options){
-    this.Base.options=options;
+  onLoad(options) {
+    this.Base.options = options;
     console.log(options);
     console.log("onload");
     this.Base.setBasicInfo();
   }
-  setBasicInfo(){
-    var that=this;
-    
-    
+  setBasicInfo() {
+    var that = this;
+
+
   }
   onReady() {
     console.log("onReady");
   }
   onShow() {
   }
-  onHide(){
+  onHide() {
     console.log("onHide");
   }
   onUnload() {
     console.log("onUnload");
-  } 
+  }
   onPullDownRefresh() {
     console.log("onPullDownRefresh");
   }
@@ -106,24 +108,24 @@ export class AppBase{
   onShareAppMessage() {
     console.log("onShareAppMessage");
   }
-  setMyData(obj){
+  setMyData(obj) {
     console.log(obj);
     this.Page.setData(obj);
   }
   getMyData() {
     return this.Page.data;
   }
-  viewPhoto(e){
+  viewPhoto(e) {
     var img = e.currentTarget.id;
     console.log(img);
     wx.previewImage({
       urls: [img],
     })
   }
-  viewGallary(modul,photos){
-    var nphotos=[];
-    for(var i=0;i<photos.length;i++){
-      nphotos.push(ApiConfig.GetUploadPath()+modul+"/"+photos[i]);
+  viewGallary(modul, photos) {
+    var nphotos = [];
+    for (var i = 0; i < photos.length; i++) {
+      nphotos.push(ApiConfig.GetUploadPath() + modul + "/" + photos[i]);
     }
     console.log(nphotos);
     wx.previewImage({
@@ -137,7 +139,7 @@ export class AppBase{
     })
   }
   openMap(e) {
-    if(AppBase.QQMAP==null){
+    if (AppBase.QQMAP == null) {
       var QQMapWX = require('../libs/qqmap/qqmap-wx-jssdk.js');
       AppBase.QQMAP = new QQMapWX({
         key: 'IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5'
@@ -147,7 +149,7 @@ export class AppBase{
     AppBase.QQMAP.geocoder({
       address: address,
       success: function (res) {
-        if(res.status==0){
+        if (res.status == 0) {
           var lat = res.result.location.lat;
           var lng = res.result.location.lng;
 
@@ -170,7 +172,7 @@ export class AppBase{
       }
     });
   }
-  uploadFile(modul,filename,callback){
+  uploadFile(modul, filename, callback) {
 
     var tempFilePaths = filename
     wx.uploadFile({
@@ -199,7 +201,7 @@ export class AppBase{
       }
     });
   }
-  uploadImage(modul,callback){
+  uploadImage(modul, callback) {
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -209,36 +211,39 @@ export class AppBase{
         //that.setData({
         //  photos: that.data.photos.concat(res.tempFilePaths)
         //});
-        var tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-          url: ApiConfig.GetFileUploadAPI(), //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'module': modul,
-            "field": "file"
-          },
-          success: function (res) {
-            console.log(res);
-            var data = res.data
-            if (data.substr(0, 7) == "success") {
-              data = data.split("|");
-              var photo = data[2];
-              callback(photo);
-            } else {
-              wx.showToast({
-                title: '上传失败，请重试',
-                icon: 'warn',
-                duration: 2000
-              })
+        var tempFilePaths = res.tempFilePaths;
+        for (var i = 0; i < tempFilePaths.length; i++) {
+
+          wx.uploadFile({
+            url: ApiConfig.GetFileUploadAPI(), //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[i],
+            name: 'file',
+            formData: {
+              'module': modul,
+              "field": "file"
+            },
+            success: function (res) {
+              console.log(res);
+              var data = res.data
+              if (data.substr(0, 7) == "success") {
+                data = data.split("|");
+                var photo = data[2];
+                callback(photo);
+              } else {
+                wx.showToast({
+                  title: '上传失败，请重试',
+                  icon: 'warn',
+                  duration: 2000
+                })
+              }
+              //do something
             }
-            //do something
-          }
-        });
+          });
+        }
       }
     })
   }
-  info(message){
+  info(message) {
     wx.showModal({
       title: '提示',
       content: message,
@@ -256,21 +261,21 @@ export class AppBase{
     wx.showModal({
       title: '错误',
       content: message,
-      showCancel:false
+      showCancel: false
     })
   }
-  
-  backPage(){
+
+  backPage() {
     wx.navigateBack({
-      
+
     });
   }
-  backHome(){
+  backHome() {
     wx.switchTab({
       url: '/pages/home/home',
     })
   }
-  logout(){
+  logout() {
     wx.redirectTo({
       url: '/pages/signin/signin',
     })
