@@ -8,6 +8,7 @@ class Signin extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
+    options.issignin=1;
     super.onLoad(options);
     this.Base.setMyData({
       isAgree: true,
@@ -89,6 +90,11 @@ class Signin extends AppBase {
       }
       if (data.length == 1) {
         ApiConfig.SetToken(data[0].token);
+        var now = (new Date()).getTime();
+        wx.setStorage({
+          key: 'identity',
+          data: now.toString() + '_' + data[0].token,
+        })
         wx.switchTab({
           url: '/pages/meeting/meeting',
         })
@@ -107,6 +113,12 @@ class Signin extends AppBase {
             ApiConfig.SetToken(doctor.token);
             doctorApi.updatetoken({},function(data){
               ApiConfig.SetToken(data.return); 
+
+              var now = (new Date()).getTime();
+              wx.setStorage({
+                key: 'identity',
+                data: now.toString() + '_' + data.return,
+              })
               wx.switchTab({
                 url: '/pages/meeting/meeting',
               })

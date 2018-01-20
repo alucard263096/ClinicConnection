@@ -77,8 +77,42 @@ export class AppBase {
   log() {
     console.log("yeah!");
   }
-  onLoad(options) {
-    this.Base.options = options;
+  onLoad(options){
+    if(options.issignin!=1){
+
+      wx.getStorage({
+        key: 'identity',
+        success: function (res) {
+          var identity = res.data;
+          console.log("identity");
+          console.log(identity);
+          identity = identity.split("_");
+          var now = (new Date()).getTime();
+          if (identity.length == 2) {
+            var timeticker = Number(identity[0]);
+            var token = identity[1];
+            if ((now - timeticker) < 6 * 3600 * 1000)//小于六小时
+            {
+              wx.setStorage({
+                key: 'identity',
+                data: now.toString() + '_' + token,
+              })
+              return;
+            }
+          }
+          wx.navigateTo({
+            url: '/pages/signin/signin',
+          })
+        }, fail: function (res) {
+          wx.navigateTo({
+            url: '/pages/signin/signin',
+          })
+        }
+      })
+    }
+
+
+    this.Base.options=options;
     console.log(options);
     console.log("onload");
     this.Base.setBasicInfo();
