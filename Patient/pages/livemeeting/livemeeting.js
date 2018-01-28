@@ -6,6 +6,7 @@ class LiveMeeting extends AppBase {
     super();
   }
   onLoad(options) {
+    //options.id ="meetingid_14_1517112271030";
     this.Base.Page = this;
     super.onLoad(options);
     this.Base.setMyData({ id:options.id});
@@ -24,6 +25,7 @@ class LiveMeeting extends AppBase {
   }
 }
 var meeting = new LiveMeeting();
+meeting.data.id="";
 var body = meeting.generateBodyJson();
 body.onLoad = meeting.onLoad;
 body.onShow = meeting.onShow;
