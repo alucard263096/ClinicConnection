@@ -127,9 +127,9 @@
 
     <view class="page__bd page__bd_spacing" style='padding:2vh;'>
 
-        <button class="weui-btn" bindtap='submitOrder' id="W" wx:if="{{doctor.active_word_query}}">预约图文咨询(￥{{doctor.price_word_query}})</button>
-        <button class="weui-btn" bindtap='submitOrder' id="V" wx:if="{{doctor.active_voice_query}}">预约语音咨询(￥{{doctor.price_voice_query}})</button>
-        <button class="weui-btn" bindtap='submitOrder' id="S" type="primary" wx:if="{{doctor.active_video_query}}">预约视频咨询(￥{{doctor.price_video_query}})</button>
+        <button class="weui-btn" bindtap='submitOrder' id="W" wx:if="{{doctor.active_word_query=='Y'}}">预约图文咨询(￥{{doctor.price_word_query}})</button>
+        <button class="weui-btn" bindtap='submitOrder' id="V" wx:if="{{doctor.active_voice_query=='Y'}}">预约语音咨询(￥{{doctor.price_voice_query}})</button>
+        <button class="weui-btn" bindtap='submitOrder' id="S" type="primary" wx:if="{{doctor.active_video_query=='Y'}}">预约视频咨询(￥{{doctor.price_video_query}})</button>
 
     </view>
 
