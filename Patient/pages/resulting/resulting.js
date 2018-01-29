@@ -103,7 +103,7 @@ class Resulting extends AppBase {
   sendVoice() {
     console.log(this.data.info.status);
     if (this.data.info.mtype == "W") {
-      this.Base.warning("你的预约服务为图文会诊，不允许发送语音");
+      this.Base.warning("你的预约服务为图文问答，不允许发送语音");
       return;
     }
     var that=this;
@@ -185,11 +185,11 @@ class Resulting extends AppBase {
   }
   sendVideo() {
     if (this.data.info.mtype == "W") {
-      this.Base.warning("你的预约服务为图文会诊，不允许发起视频会诊");
+      this.Base.warning("你的预约服务为图文问答，不允许发起视频问答");
       return;
     }
     if (this.data.info.mtype == "V") {
-      this.Base.warning("你的预约服务为语音会诊，不允许发起视频会诊");
+      this.Base.warning("你的预约服务为语音问答，不允许发起视频问答");
       return;
     }
     var that=this;

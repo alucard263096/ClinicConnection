@@ -14,7 +14,7 @@
           {{member_id_name}}
         </view>
         <view class="flex-1">
-          会诊方式
+          问答方式
         </view>
         <view class="flex-1">
           {{mtype_name}}

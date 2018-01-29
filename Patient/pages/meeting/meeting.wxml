@@ -26,7 +26,7 @@
               </view>
               <view class="weui-cell__bd" style='padding-left:10px;'>
                 <view>{{item.doctor_id_name}}</view>
-                <view style="font-size: 13px;"><text style='color: #888888;'>会诊方式：</text>{{item.mtype_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>问答方式：</text>{{item.mtype_name}}</view>
                 <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
                 <view style="font-size: 13px;">{{item.description}}</view>
               </view>
@@ -47,7 +47,7 @@
               </view>
               <view class="weui-cell__bd" style='padding-left:10px;'>
                 <view>{{item.doctor_id_name}}</view>
-                <view style="font-size: 13px;"><text style='color: #888888;'>会诊方式：</text>{{item.mtype_name}}</view>
+                <view style="font-size: 13px;"><text style='color: #888888;'>问答方式：</text>{{item.mtype_name}}</view>
                 <view style="font-size: 13px;"><text style='color: #888888;'>预约时间：</text>{{item.mdate}}</view>
                 <view style="font-size: 13px;">{{item.description}}</view>
               </view>

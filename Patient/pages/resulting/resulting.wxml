@@ -5,7 +5,7 @@
     <scroll-view style='height:85vh' scroll-y="true" scroll-top='chattop' scroll-into-view="{{latestid}}">
 
       <view style='font-size:14px;color:#ccc;text-align:center;padding-top:3vh;' wx:if="{{info.status=='W'}}">
-        会诊尚未开始，请耐心等候
+        问答尚未开始，请耐心等候
       </view>
       <view class="weui-cells weui-cells_after-title" style='background-color:transparent;'>
         <view class="weui-cell" wx:for="{{chats}}" wx:key="k" style="font-size: 13px;">
@@ -24,7 +24,7 @@
               <button class="weui-btn" type="primary" size="mini" bindtap='playRecord' data-src="{{uploadpath}}meetinglog/{{item.message}}">点击播放语音</button>
             </view>
             <view class='msg' wx:if="{{item.type=='S'}}">
-              <button class="weui-btn" type="primary" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频会诊</button>
+              <button class="weui-btn" type="primary" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频问答</button>
             </view>
           </view>
           <view class="weui-cell__bd" wx:if="{{item.side=='D'}}">
@@ -39,7 +39,7 @@
               <button class="weui-btn" type="default" size="mini" bindtap='playRecord' data-src="{{uploadpath}}meetinglog/{{item.message}}">点击播放语音</button>
             </view>
             <view class='pmsg' wx:if="{{item.type=='S'}}">
-              <button class="weui-btn" type="default" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频会诊</button>
+              <button class="weui-btn" type="default" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频问答</button>
             </view>
           </view>
           <view class="weui-cell__hd" style="position: relative;" wx:if="{{item.side=='D'}}">
@@ -74,7 +74,7 @@
               <button class="weui-btn" type="default" bindtap='sendVoice' size="mini">发起语音</button>
             </view>
             <view class="weui-flex__item">
-              <button class="weui-btn" type="default" bindtap="sendVideo" size="mini">面对面会诊</button>
+              <button class="weui-btn" type="default" bindtap="sendVideo" size="mini">面对面问答</button>
             </view>
           </view>
         </view>

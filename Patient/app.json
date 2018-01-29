@@ -20,7 +20,7 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarTitleText": "医诊互联求诊",
+    "navigationBarTitleText": "医诊互联求知问答",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -36,13 +36,13 @@
         "selectedIconPath": "images/icons/home-a.png"
       },
       {
-        "text": "医生",
+        "text": "专家",
         "pagePath": "pages/doctorlist/doctorlist",
         "iconPath": "images/icons/doctor.png",
         "selectedIconPath": "images/icons/doctor-a.png"
       },
       {
-        "text": "会诊室",
+        "text": "会谈室",
         "pagePath": "pages/meeting/meeting",
         "iconPath": "images/icons/booking.png",
         "selectedIconPath": "images/icons/booking-a.png"
