@@ -11,7 +11,7 @@
               <text style='color: #888888;'>支付时间：</text>{{order.paied_time}}
             </view>
             <view style="font-size: 13px;">
-              <text style='color: #888888;'>会诊方式：</text>{{order.booking_type_name}}
+              <text style='color: #888888;'>问答方式：</text>{{order.booking_type_name}}
             </view>
             <view style="font-size: 13px;">
               <text style='color: #888888;'>预约时间：</text>{{order.booking_date}}

@@ -8,7 +8,10 @@ export class AppBase{
   static QQMAP = null;
   app=null;
   options=null;
-  data = { uploadpath: ApiConfig.GetUploadPath(),
+  data = {
+    uploadpath: ApiConfig.GetUploadPath(),
+    rtmppath: ApiConfig.GetRTMPAPI(),
+    pushpath: ApiConfig.GetPUSHAPI(),
     copyright:{name:"医诊互联",website:"hss.com"}};
   Page=null;
   util=ApiUtil;

@@ -43,13 +43,13 @@
             </view>
             <view class="weui-form-preview__ft" wx:if="{{order.status=='P'}}">
                 <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">退款</navigator>
-                <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" url='/pages/meeting/meeting' open-type='switchTab' hover-class="weui-form-preview__btn_active">进入会诊</navigator>
+                <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" url='/pages/meeting/meeting' open-type='switchTab' hover-class="weui-form-preview__btn_active">进入问答</navigator>
             </view>
             <view class="weui-form-preview__ft" wx:if="{{order.status=='S'}}">
                 <navigator url="/pages/doctorlist/doctorlist" open-type='switchTab' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">继续预约</navigator>
             </view>
         </view>
-        <navigator style='right:0px;position:absolute;font-size:13px;' url="/pages/content/content?keycode=bookingagreement" class="weui-agree__link">《预约服务会诊条款》</navigator>
+        <navigator style='right:0px;position:absolute;font-size:13px;' url="/pages/content/content?keycode=bookingagreement" class="weui-agree__link">《预约服务问答条款》</navigator>
         
         <view class="weui-msg__extra-area">
             <view class="weui-footer">

@@ -15,7 +15,7 @@
             </navigator>
             <navigator url="/pages/meeting/meeting" open-type='switchTab' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class='weui-cell__hd fa fa-bed'></view>
-                <view class="weui-cell__bd">会诊记录</view>
+                <view class="weui-cell__bd">问答记录</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
             </navigator>
             <navigator url="/pages/track/track" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
