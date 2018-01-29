@@ -24,6 +24,7 @@ class LiveMeeting extends AppBase {
   }
 }
 var meeting = new LiveMeeting();
+meeting.data.id="";
 var body = meeting.generateBodyJson();
 body.onLoad = meeting.onLoad;
 body.onShow = meeting.onShow;

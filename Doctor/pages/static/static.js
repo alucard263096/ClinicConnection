@@ -1,61 +1,45 @@
 // pages/static/static.js
-var wxCharts = require('../../utils/wxcharts.js');
-var app = getApp();
-var areaChart = null;
-var pieChart = null;
-Page({
-  data: {
-  },
-  touchHandler: function (e) {
-    console.log(pieChart.getCurrentDataIndex(e));
-  },
-  onLoad: function (e) {
-    var windowWidth = 320;
-    try {
-      var res = wx.getSystemInfoSync();
-      windowWidth = res.windowWidth;
-    } catch (e) {
-      console.error('getSystemInfoSync failed!');
-    }
+import { AppBase } from "../../app/AppBase";
+import { DoctorApi } from "../../apis/doctor.api.js";
+import { MeetingMgr } from "../../app/MeetingMgr";
 
-    pieChart = new wxCharts({
-      animation: true,
-      canvasId: 'pieCanvas',
-      type: 'pie',
-      series: [{
-        name: '成交量1',
-        data: 15,
-      }, {
-        name: '成交量2',
-        data: 35,
-      }, {
-        name: '成交量3',
-        data: 78,
-      }, {
-        name: '成交量4',
-        data: 63,
-      }, {
-        name: '成交量2',
-        data: 35,
-      }, {
-        name: '成交量3',
-        data: 78,
-      }, {
-        name: '成交量4',
-        data: 63,
-      }, {
-        name: '成交量2',
-        data: 35,
-      }, {
-        name: '成交量3',
-        data: 78,
-      }, {
-        name: '成交量3',
-        data: 78,
-      }],
-      width: windowWidth,
-      height: 300,
-      dataLabel: true,
+var wxCharts = require('../../utils/wxcharts.js');
+
+class PageObject extends AppBase {
+  
+  constructor() {
+    super();
+  }
+  onLoad(options) {
+
+
+    this.Base.Page = this;
+    super.onLoad(options);
+    this.Base.setMyData({
+      tabs: [{ name: "概况", count: 0 }, { name: "预约", count: 0 }, { name: "会诊", count: 0 }, { name: "收入", count: 0 }],
+      activeIndex: 0,
+      sliderOffset: 0,
+      sliderLeft: 0
+    });
+
+    var meetingMgr = new MeetingMgr();
+    this.Base.meetingMgr = meetingMgr;
+  }
+  onShow() {
+    var that = this;
+    
+  }
+  tabClick(e) {
+    this.Base.setMyData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
     });
   }
-});
+}
+
+var meeting = new PageObject();
+var body = meeting.generateBodyJson();
+body.onLoad = meeting.onLoad;
+body.onShow = meeting.onShow;
+body.tabClick = meeting.tabClick;
+Page(body)

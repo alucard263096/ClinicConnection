@@ -8,13 +8,18 @@ export class AppBase{
   static QQMAP = null;
   app=null;
   options=null;
-  data = { uploadpath: ApiConfig.GetUploadPath(),
-    copyright:{name:"医诊互联",website:"hss.com"}};
+  data={};
   Page=null;
   util=ApiUtil;
   constructor(){
     this.app=getApp();
-    this.me=this;
+    this.me = this; 
+    this.data = {
+      uploadpath: ApiConfig.GetUploadPath(),
+      rtmppath: ApiConfig.GetRTMPAPI(),
+      pushpath: ApiConfig.GetPUSHAPI(),
+      copyright: { name: "医诊互联", website: "hss.com" }
+    };
   }
   generateBodyJson(){
     var base=this;

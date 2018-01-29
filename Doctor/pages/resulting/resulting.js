@@ -10,6 +10,7 @@ class Resulting extends AppBase {
     super();
   }
   onLoad(options) {
+    console.log(options);
     this.Base.Page = this;
     super.onLoad(options);
 
@@ -18,6 +19,7 @@ class Resulting extends AppBase {
   }
   onShow() {
     var that = this;
+    console.log(this.Base.options);
     var meetingApi=new MeetingApi();
     meetingApi.detail({id:this.Base.options.id},function(data){
       that.Base.setMyData({ info: data });
