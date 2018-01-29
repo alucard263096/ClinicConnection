@@ -80,35 +80,32 @@ export class AppBase {
   onLoad(options){
     if(options.issignin!=1){
 
-      wx.getStorage({
-        key: 'identity',
-        success: function (res) {
-          var identity = res.data;
-          console.log("identity");
-          console.log(identity);
-          identity = identity.split("_");
-          var now = (new Date()).getTime();
-          if (identity.length == 2) {
-            var timeticker = Number(identity[0]);
-            var token = identity[1];
-            if ((now - timeticker) < 6 * 3600 * 1000)//小于六小时
-            {
-              wx.setStorage({
-                key: 'identity',
-                data: now.toString() + '_' + token,
-              })
-              return;
-            }
-          }
-          wx.navigateTo({
-            url: '/pages/signin/signin',
-          })
-        }, fail: function (res) {
+      var identity=wx.getStorageSync("identity");
+      console.log("identity");
+      console.log(identity);
+      identity = identity.split("_");
+      var now = (new Date()).getTime();
+      if (identity.length == 2) {
+        var timeticker = Number(identity[0]);
+        var token = identity[1];
+        if ((now - timeticker) < 6 * 3600 * 1000)//小于六小时
+        {
+          wx.setStorage({
+            key: 'identity',
+            data: now.toString() + '_' + token,
+          });
+          ApiConfig.SetToken(token);
+        }else{
           wx.navigateTo({
             url: '/pages/signin/signin',
           })
         }
-      })
+      }else{
+
+        wx.navigateTo({
+          url: '/pages/signin/signin',
+        })
+      }
     }
 
 
@@ -310,6 +307,7 @@ export class AppBase {
     })
   }
   logout() {
+    wx.clearStorage();
     wx.redirectTo({
       url: '/pages/signin/signin',
     })
