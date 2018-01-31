@@ -42,13 +42,14 @@
                 <view  class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即支付</view>
             </view>
             <view class="weui-form-preview__ft" wx:if="{{order.status=='P'}}">
-                <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">退款</navigator>
+                <view class="weui-form-preview__btn weui-form-preview__btn_warn" bindtap='refundRequest' hover-class="weui-form-preview__btn_active">退款</view>
                 <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" url='/pages/meeting/meeting' open-type='switchTab' hover-class="weui-form-preview__btn_active">进入问答</navigator>
             </view>
-            <view class="weui-form-preview__ft" wx:if="{{order.status=='S'}}">
-                <navigator url="/pages/doctorlist/doctorlist" open-type='switchTab' class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">继续预约</navigator>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='RW'}}">
+                <navigator  class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">等待退款</navigator>
             </view>
         </view>
+                <view class='weui-cells__tips' wx:if="{{order.status=='RW'}}">我们通常会在1-3个工作日内完成退款，请耐心等候，有任何疑问请直接联系客服。</view>
         <navigator style='right:0px;position:absolute;font-size:13px;' url="/pages/content/content?keycode=bookingagreement" class="weui-agree__link">《预约服务问答条款》</navigator>
         
         <view class="weui-msg__extra-area">

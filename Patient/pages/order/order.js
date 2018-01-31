@@ -60,14 +60,41 @@ class Order extends AppBase {
       }
     });
   }
+
+  refundRequest(){
+    var that=this;
+    wx.showModal({
+      title: '警告',
+      content: "确定要退款？",
+      success: function (res) {
+        if (res.confirm) {
+          var orderApi = new OrderApi();
+          orderApi.refund({ id: that.Base.options.id }, function (data) {
+            if(data.code=="0"){
+              var order = that.Base.getMyData();
+              order.status = "RW";
+              order.status_name = "等待退款";
+              that.Base.setMyData({ order: order });
+              that.Base.info("申请退款成功，稍后客服将会为您退款");
+            }else{
+              that.Base.error("申请退款失败，请重新尝试");
+            }
+          });
+        } else if (res.cancel) {
+
+        }
+      }
+    })
+  }
 }
 
 var order=new Order();
 var body = order.generateBodyJson();
 body.onLoad = order.onLoad;
-body.onShow = order.onShow;
+body.onShow = order.onShow; 
 body.viewPhotos = order.viewPhotos;
 body.payOrder = order.payOrder;
+body.refundRequest = order.refundRequest;
 
 
 Page(body)
