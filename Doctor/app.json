@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/meeting/meeting",
+    "pages/static/static",
     "pages/livemeeting/livemeeting",
     "pages/signin/signin",
     "pages/resulting/resulting",
@@ -9,7 +10,6 @@
     "pages/meetingrecord/meetingrecord",
     "pages/orderlist/orderlist",
     "pages/schedule/schedule",
-    "pages/static/static",
     "pages/content/content",
     "pages/index/index",
     "pages/logs/logs"

@@ -22,3 +22,10 @@ page{
 .weui-footer_fixed-bottom{
     margin-bottom: 0;
 }
+
+.primary {
+  color: #0BB20C;
+}
+.danger {
+  color: #FF5155;
+}
