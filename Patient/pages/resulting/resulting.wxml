@@ -28,7 +28,7 @@
             </view>
           </view>
           <view class="weui-cell__bd" wx:if="{{item.side=='D'}}">
-            <view class='pname'>{{item.doctor_id_name}}医生</view>
+            <view class='pname'>{{item.doctor_id_name}}专家</view>
             <view class='pmsg' wx:if="{{item.type=='T'}}">
               <button class="weui-btn" type="default" size="mini">{{item.message}}</button>
             </view>

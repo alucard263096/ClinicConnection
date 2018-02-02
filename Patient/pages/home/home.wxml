@@ -27,7 +27,7 @@
     </view>
 
     <view class="weui-panel">
-      <view class="weui-panel__hd">星级医生</view>
+      <view class="weui-panel__hd">星级专家</view>
       <view class="weui-panel__bd">
         <navigator wx:for="{{stardoctors}}" wx:key="key" url="/pages/doctor/doctor?id={{item.id}}" open-type='navigate' class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
@@ -48,7 +48,7 @@
       </view>
     </view>
 
-    <view class="weui-cells__title">我们诊所</view>
+    <view class="weui-cells__title">我们</view>
     <view class="weui-cells weui-cells_after-title">
 
       <swiper indicator-dots="true">
@@ -62,8 +62,8 @@
 
 
 
-    <view class="weui-cells__title">资质证明</view>
-    <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cells__title" wx:if="{{clinic.id!=1}}" >资质证明</view>
+    <view class="weui-cells weui-cells_after-title" wx:if="{{clinic.id!=1}}">
       <view class='weui-cell'>
         <view class="weui-cell__bd" bindtap='viewPhoto' id="{{uploadpath}}clinic/{{clinic.businesslicense}}">营业执照</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -77,11 +77,11 @@
     <view class="weui-cells__title">联系我们</view>
     <view class="weui-cells weui-cells_after-title">
       <view class='weui-cell' bindtap='phoneCall' id="{{clinic.tel}}">
-        <view class="weui-cell__bd" style='min-width:30vw'>咨询热线</view>
+        <view class="weui-cell__bd" style='min-width:30vw'>热线</view>
         <view class="weui-cell__ft">{{clinic.tel}}</view>
       </view>
       <view class='weui-cell' bindtap='openMap' id="{{clinic.address}}">
-        <view class="weui-cell__bd" style='min-width:30vw'>诊所地址</view>
+        <view class="weui-cell__bd" style='min-width:30vw'>地址</view>
         <view class="weui-cell__ft">{{clinic.address}}</view>
       </view>
     </view>

@@ -14,7 +14,7 @@
             </view>
             <view class="weui-form-preview__bd">
                 <view class="weui-form-preview__item">
-                    <view class="weui-form-preview__label">医生</view>
+                    <view class="weui-form-preview__label">专家</view>
                     <view class="weui-form-preview__value">{{order.doctor_id_name}}</view>
                 </view>
                 <view class="weui-form-preview__item">

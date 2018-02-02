@@ -12,7 +12,7 @@ export class AppBase{
     uploadpath: ApiConfig.GetUploadPath(),
     rtmppath: ApiConfig.GetRTMPAPI(),
     pushpath: ApiConfig.GetPUSHAPI(),
-    copyright:{name:"医诊互联",website:"hss.com"}};
+    copyright: { name:"E联星空",website:"hss.com"}};
   Page=null;
   util=ApiUtil;
   constructor(){

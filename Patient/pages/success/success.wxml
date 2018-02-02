@@ -6,7 +6,7 @@
         </view>
         <view class="weui-msg__text-area">
             <view class="weui-msg__title">支付成功</view>
-            <view class="weui-msg__desc">请在预约时间后进入问答室与医生进行直接问答。</view>
+            <view class="weui-msg__desc">请在预约时间后进入问答室与专家进行直接问答。</view>
             <view class="weui-msg__desc">如需变更，请在个人中心中与客服人员联系。</view>
             <view class="weui-msg__desc">其它相关细则请参考<navigator url="/pages/content/content?keycode=bookingagreement" class="weui-msg__link">问答服务条款</navigator></view>
         </view>
