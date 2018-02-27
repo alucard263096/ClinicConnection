@@ -31,6 +31,7 @@ class Content extends AppBase {
   }
 }
 var content = new Content();
+content.PageName = "content";
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
 body.onShow = content.onShow;
