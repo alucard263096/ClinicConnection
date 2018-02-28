@@ -2,6 +2,7 @@
 import { AppBase } from "../../app/AppBase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { GoodsApi } from "../../apis/goods.api";
+import { MemberApi } from "../../apis/member.api";
 
 class Mall extends AppBase {
   constructor() {
@@ -15,6 +16,13 @@ class Mall extends AppBase {
     var that = this;
     goodsApi.categorylist({}, function (data) {
       that.setData({ categories: data, category: data[0] });
+      var memberapi = new MemberApi();
+      memberapi.getcart({},function(data){
+        console.log("a");
+        console.log(data);
+        that.cart=data;
+        that.updateCartData();
+      });
     });
 
   }
@@ -42,8 +50,55 @@ class Mall extends AppBase {
     }
     this.updateCartData();
   }
+  minusToCart(e) {
+    var id = e.currentTarget.id;
+    for (var i = 0; i < this.cart.length; i++) {
+      if (this.cart[i].goods_id == id) {
+        this.cart[i].qty = this.cart[i].qty - 1;
+        if(this.cart[i].qty==0){
+          this.cart.splice(i,1);
+        }
+        break;
+      }
+    }
+    this.updateCartData();
+  }
   updateCartData(){
-    console.log(this.cart);
+    var memberapi = new MemberApi();
+    memberapi.updatecart({cart:JSON.stringify(this.cart)}, function (data) {},false);
+    var categories = this.Base.getMyData().categories;
+    var category = this.Base.getMyData().category;
+    var cart = this.cart;
+    for(var i=0;i<categories.length;i++){
+
+      categories[i].cartqty = 0;
+      for(var j=0;j<categories[i].goods.length;j++){
+        //
+        for (var k = 0; k < cart.length;k++){
+          if (categories[i].goods[j].id == cart[k].goods_id){
+            categories[i].goods[j].cartqty = cart[k].qty;
+            cart[k].info = categories[i].goods[j];
+          }else{
+            categories[i].goods[j].cartqty=0;
+          }
+          categories[i].cartqty += categories[i].goods[j].cartqty;
+        }
+      }
+    }
+    for (var j = 0; j < category.goods.length; j++) {
+      category.goods[j].cartqty = 0;
+      for (var k = 0; k < cart.length; k++) {
+        if (category.goods[j].id == cart[k].goods_id) {
+          category.goods[j].cartqty = cart[k].qty;
+        }
+      }
+    }
+    var totalprice=0;
+    for (var k = 0; k < cart.length; k++) {
+      totalprice += Number(cart[k].info.price * cart[k].qty);
+    }
+    totalprice = totalprice.toFixed(2);
+    this.Base.setMyData({ categories: categories, category: category,cart:cart,totalprice:totalprice });
   }
 }
 
@@ -52,6 +107,7 @@ var body = mall.generateBodyJson();
 body.cart=[];
 body.onLoad = mall.onLoad;
 body.setSelectedCategory = mall.setSelectedCategory;
-body.addToCart = mall.addToCart;
+body.addToCart = mall.addToCart; 
 body.updateCartData = mall.updateCartData;
+body.minusToCart = mall.minusToCart;
 Page(body)
