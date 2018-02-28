@@ -22,3 +22,9 @@ page{
 .weui-footer_fixed-bottom{
     margin-bottom: 0;
 }
+.flex-row{
+  display: flex;
+}
+.primary{
+  color:#FF5155;
+}

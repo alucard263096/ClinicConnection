@@ -1,0 +1,54 @@
+<view class="page">
+    <view class="page__bd">
+
+      <view class="weui-cells weui-cells_after-title" style='height:100vh;border-bottom:0px;'>
+        <view class="weui-cell" style='padding:0px;'>
+          <view class="weui-cell__hd" style="position: relative;;width:25vw;height:100vh;background-color:#f2f2f2;">
+            <block wx:for="{{categories}}" wx:key="k">
+              <view class='category {{category.id==item.id?"active":""}}' bindtap='setSelectedCategory' id="{{item.id}}" >
+              {{item.name}}
+              </view>
+            </block>
+          </view>
+          <view class="weui-cell__bd" style='height:100vh;'>
+            <view class="weui-loadmore " wx:if="{{category.goods.length==0}}">
+                    暂无数据
+            </view>
+            <view class="weui-media-box weui-media-box_small-appmsg"  wx:if="{{category.goods.length>0}}">
+              <view class="weui-cells weui-cells_in-small-appmsg">
+                <view wx:for="{{category.goods}}" wx:key="key" class="weui-cell weui-cell_access" >
+                  <view class="weui-cell__hd">
+                    <image src="{{uploadpath}}goods/{{item.cover}}" style="width: 10vw;height: 10vw;margin-right: 5px" />
+                  </view>
+                  <view class="weui-cell__bd weui-cell_primary">
+                    <view class="weui-media-box weui-media-box_text" style='padding-right:0px;'>
+                      <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
+                      <view class="weui-media-box__desc">
+                        <text decode="true">{{item.summary}}</text>
+                      </view>
+                      <view class='flex-row' style='margin-top:10px;'>
+                        <view>
+                          <text class='primary'>￥{{item.price}}</text><text wx:if="{{item.price<item.oriprice}}"  class="oldprice">￥{{item.oriprice}}</text>
+                        </view>
+                        <view style='text-align:right;flex:1;margin-top:0.5vh;'>
+                          <image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image>
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                  <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                </view>
+                
+
+              </view>
+            </view>
+
+          </view>
+        </view>
+      </view>
+
+      
+      
+
+    </view>
+</view>

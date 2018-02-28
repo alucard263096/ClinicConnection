@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/mall/mall",
     "pages/home/home",
     "pages/livemeeting/livemeeting",
     "pages/index/index",
@@ -40,6 +41,12 @@
         "pagePath": "pages/doctorlist/doctorlist",
         "iconPath": "images/icons/doctor.png",
         "selectedIconPath": "images/icons/doctor-a.png"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/mall/mall",
+        "iconPath": "images/icons/cart.png",
+        "selectedIconPath": "images/icons/cart-a.png"
       },
       {
         "text": "会谈室",
