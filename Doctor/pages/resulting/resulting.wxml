@@ -80,17 +80,31 @@
         </view>
         <view class="weui-cells weui-cells_after-title" style='padding-top:2vw;'>
           <view class="weui-flex">
-            <view class="weui-flex__item">
-              <button class="weui-btn" type="default" bindtap="sendPicture" size="mini">图片</button>
+            <view class="weui-flex__item" >
+              <view class='buttonicon fa fa-file-image-o'  bindtap="sendPicture">
+                
+              </view>
+              <view class='buttontxt'>图片</view>
             </view>
             <view class="weui-flex__item">
-              <button class="weui-btn" type="default" bindtap='sendVoice' size="mini">语音</button>
+              <view class='buttonicon fa fa-file-sound-o'  bindtap="sendVoice">
+              </view>
+              <view class='buttontxt'>语音</view>
             </view>
             <view class="weui-flex__item">
-              <button class="weui-btn" type="default" bindtap="sendVideo" size="mini">视频</button>
+              <view class='buttonicon fa fa-file-video-o'  bindtap="sendVideo">
+              </view>
+              <view class='buttontxt'>视频</view>
             </view>
             <view class="weui-flex__item">
-              <button class="weui-btn" type="warn" bindtap="completeMeeting" size="mini">完成会诊</button>
+              <view class='buttonicon fa fa-cart-plus' bindtap="sendGoods">
+              </view>
+              <view class='buttontxt'>推荐</view>
+            </view>
+            <view class="weui-flex__item">
+              <view class='buttonicon fa fa-check-square-o weui-toptips_warn' style='color:white;border-color:white;'  bindtap="completeMeeting">
+              </view>
+              <view class='buttontxt'>完成</view>
             </view>
           </view>
         </view>

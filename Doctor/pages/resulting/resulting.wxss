@@ -40,3 +40,11 @@
 .img{
   width:100%;
 }
+.buttonicon{
+  padding:5px;
+  border:1px solid #aaa;
+  border-radius: 4px;
+}
+.buttontxt{
+  font-size: 12px;
+}

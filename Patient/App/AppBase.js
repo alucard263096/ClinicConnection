@@ -92,7 +92,7 @@ export class AppBase{
       //ApiConfig.SetUnicode("vista");
       //ApiConfig.SetToken("oo7cm0Rf0NNG4zqieBcS4LxJv_9E");
       if(this.PageName!="content"){
-        wx.redirectTo({
+        wx.reLaunch({
           url: '../content/content?keycode=close',
         });
       }

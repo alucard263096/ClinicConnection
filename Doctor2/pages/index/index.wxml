@@ -1,0 +1,26 @@
+<!--index.wxml-->
+<view style='padding:10px;'>
+  <view style='font-weight:bold;margin-bottom:30px;'>
+    <text>深圳市资讯管理有限公司</text>
+  </view>
+  <view style='font-size:14px;'>
+    <text>深圳市海富特资讯管理有限公司成立于2013年9月13日，注册资本为50万元人民币，是一家从事应用软件设计、信息资讯、软件技术机网络技术开发、技术服务、技术转让、技术咨询等的公司。
+    </text>
+  </view>
+  <view style='font-size:14px;'>
+    <text>
+    公司经过几年的发展，致力于软件开发的不断优化，独立开发基于敏捷开发模型的App-Link软件开发平台，通过App-Link软件开发平台，造就了有前景的初创公司，如成功父母必听、妈妈大学、BB操手、栗子学院等多元化的综合性项目。
+    </text>
+  </view>
+  <view style='font-size:14px;'>
+    <text>
+    公司抱持着“大道至简“的先进软件开发理念，为客户提供一系列的软件开发服务，解决客户的需求，让客户满意。
+    </text>
+  </view>
+  <view style='font-size:14px;color:blue;'>
+    <text>
+    地址：深圳市南山区天安数码城1栋305
+    </text>
+  </view>
+  
+</view>

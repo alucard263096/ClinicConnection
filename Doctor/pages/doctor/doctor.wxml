@@ -14,17 +14,35 @@
       </view>
     </view>
 
+
+    <view class="weui-cells__title">二维码</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view bindtap='viewPhoto' id="{{apipath}}doctor/qrcode?doctor_id={{doctor.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-qrcode'></view>
+                <view class="weui-cell__bd">我的二维码</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </view>
+            <view  class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='viewPhoto' id="{{apipath}}clinic/qrcode?unicode={{doctor.clinic_unicode}}" >
+                <view class='weui-cell__hd fa fa-qrcode'></view>
+                <view class="weui-cell__bd">诊所二维码</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </view>
+        </view>
+
+
+
+
     <view class="weui-cells__title">定价管理</view>
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_word_query=='Y'}}">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_word_query_value=='Y'}}">
                 <view class='weui-cell__hd fa fa-commenting'> 图文咨询</view>
                 <view class="weui-cell__bd" style='text-align:right'>￥{{doctor.price_word_query}}</view>
             </view>
-            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_voice_query=='Y'}}">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_voice_query_value=='Y'}}">
                 <view class='weui-cell__hd fa fa-microphone'> 语音咨询</view>
                 <view class="weui-cell__bd" style='text-align:right'>￥{{doctor.price_voice_query}}</view>
             </view>
-            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_video_query=='Y'}}">
+            <view class="weui-cell weui-cell_access" hover-class="weui-cell_active"  wx:if="{{doctor.active_video_query_value=='Y'}}">
                 <view class='weui-cell__hd fa fa-video-camera'> 视频会诊</view>
                 <view class="weui-cell__bd" style='text-align:right'>￥{{doctor.price_video_query}}</view>
             </view>

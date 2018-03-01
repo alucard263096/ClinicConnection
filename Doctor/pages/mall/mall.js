@@ -2,7 +2,6 @@
 import { AppBase } from "../../app/AppBase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { GoodsApi } from "../../apis/goods.api";
-import { MemberApi } from "../../apis/member.api";
 
 class Mall extends AppBase {
   constructor() {
@@ -16,14 +15,8 @@ class Mall extends AppBase {
     var that = this;
     goodsApi.categorylist({}, function (data) {
       that.setData({ categories: data, category: data[0] });
-      var memberapi = new MemberApi();
-      memberapi.getcart({},function(data){
-        console.log("a");
-        console.log(data);
-        that.cart=data;
-        that.updateCartData();
+      that.updateCartData();
       });
-    });
 
   }
   setSelectedCategory(e) {
@@ -64,8 +57,7 @@ class Mall extends AppBase {
     this.updateCartData();
   }
   updateCartData(){
-    var memberapi = new MemberApi();
-    memberapi.updatecart({cart:JSON.stringify(this.cart)}, function (data) {},false);
+    
     var categories = this.Base.getMyData().categories;
     var category = this.Base.getMyData().category;
     var cart = this.cart;

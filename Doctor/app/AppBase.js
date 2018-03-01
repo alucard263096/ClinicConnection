@@ -1,11 +1,14 @@
 import { ApiConfig } from "../apis/apiconfig.js";
 import { ApiUtil } from "../apis/apiutil.js";
+import { DoctorApi } from "../apis/doctor.api";
 
 export class AppBase {
   app = null;
   options = null;
   data = {
+    
     uploadpath: ApiConfig.GetUploadPath(),
+    apipath: ApiConfig.GetApiUrl(),
     rtmppath: ApiConfig.GetRTMPAPI(),
     pushpath: ApiConfig.GetPUSHAPI(),
     copyright: { name: "医诊互联", website: "hss.com" }
@@ -98,13 +101,15 @@ export class AppBase {
         }else{
           wx.navigateTo({
             url: '/pages/signin/signin',
-          })
+          });
+          return;
         }
       }else{
 
         wx.navigateTo({
           url: '/pages/signin/signin',
         })
+        return;
       }
     }
 
@@ -113,6 +118,18 @@ export class AppBase {
     console.log(options);
     console.log("onload");
     this.Base.setBasicInfo();
+    if (options.issignin!=1){
+
+      var doctorApi = new DoctorApi();
+      doctorApi.detail({}, function (data) {
+        if (data == false) {
+          wx.navigateTo({
+            url: '/pages/signin/signin',
+          })
+          return;
+        }
+      });
+    }
   }
   setBasicInfo() {
     var that = this;

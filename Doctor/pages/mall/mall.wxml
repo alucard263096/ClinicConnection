@@ -54,7 +54,6 @@
 
 
       <view class="flex-row" style='height:10vh;background:white;'>
-        <view style='flex:7;color:#0BB20C;padding-left:10px;padding-top:3vh;'>￥{{totalprice}}</view>
         <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;'>选好了</view>
       </view>
 

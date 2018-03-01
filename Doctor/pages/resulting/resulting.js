@@ -12,6 +12,7 @@ class Resulting extends AppBase {
   onLoad(options) {
     console.log(options);
     this.Base.Page = this;
+    options.id=14;
     super.onLoad(options);
 
     var meetingMgr = new MeetingMgr();
@@ -193,6 +194,11 @@ class Resulting extends AppBase {
       url: '/pages/report/report?id='+this.Base.options.id,
     })
   }
+  sendGoods(){
+    wx.navigateTo({
+      url: '../mall/mall',
+    })
+  }
 }
 var resulting = new Resulting();
 var body = resulting.generateBodyJson();
@@ -208,6 +214,7 @@ body.sendVoice = resulting.sendVoice;
 body.sendVideo = resulting.sendVideo; 
 body.longtaptest = resulting.longtaptest;
 body.playRecord = resulting.playRecord; 
-body.gotoLiveMeeting = resulting.gotoLiveMeeting;
+body.gotoLiveMeeting = resulting.gotoLiveMeeting; 
 body.completeMeeting = resulting.completeMeeting;
+body.sendGoods = resulting.sendGoods;
 Page(body)
