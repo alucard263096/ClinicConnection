@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/home/home",
+    "pages/meeting/meeting",
+    "pages/resulting/resulting",
     "pages/goods/goods",
     "pages/mall/mall",
     "pages/livemeeting/livemeeting",
     "pages/index/index",
-    "pages/meeting/meeting",
     "pages/report/report",
-    "pages/resulting/resulting",
     "pages/order/order",
     "pages/content/content",
     "pages/member/member",

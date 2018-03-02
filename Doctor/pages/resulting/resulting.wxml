@@ -18,7 +18,7 @@
     </view>
 
 
-    <scroll-view style='height:{{info.photos.length>0?"65":"70"}}vh' scroll-y="true" scroll-top='chattop' scroll-into-view="{{latestid}}">
+    <scroll-view style='height:{{info.photos.length>0?"65":"70"}}vh;' scroll-y="true" scroll-top='chattop' scroll-into-view="{{latestid}}">
       <view class="weui-cells weui-cells_after-title" style='background-color:transparent;'>
         <view class="weui-cell" wx:for="{{chats}}" wx:key="k" style="font-size: 13px;">
           <view class="weui-cell__hd" style="position: relative;margin-right: 10px;" wx:if="{{item.side=='D'}}">
@@ -37,6 +37,20 @@
             </view>
             <view class='msg' wx:if="{{item.type=='S'}}">
               <button class="weui-btn" type="primary" size="mini" bindtap='gotoLiveMeeting' id="{{item.message}}">点击进入视频会诊</button>
+            </view>
+            <view class='msg' wx:if="{{item.type=='G'}}" style='display:flex;'>
+
+              <view style='display:flex;background:white;padding:1vh;border-radius:0.5vh;'>
+              <view >
+                <image src="{{uploadpath}}goods/{{item.goods.cover}}" style='width:15vw;' mode="widthFix"></image>
+              </view>
+              <view style='width:40vw'>
+              <view class="weui-media-box__title weui-media-box__title_in-text"> {{item.goods.name}}</view>
+          <view class="weui-media-box__desc">
+            <text>{{item.goods.summary}}</text>
+          </view>
+              </view>
+              </view>
             </view>
           </view>
           <view class="weui-cell__bd" wx:if="{{item.side=='P'}}">
@@ -61,6 +75,7 @@
           <view id="latest_{{item.id}}"></view>
         </view>
       </view>
+      <view style='height:5vh;'></view>
     </scroll-view>
 
 
@@ -80,19 +95,19 @@
         </view>
         <view class="weui-cells weui-cells_after-title" style='padding-top:2vw;'>
           <view class="weui-flex">
-            <view class="weui-flex__item" >
-              <view class='buttonicon fa fa-file-image-o'  bindtap="sendPicture">
-                
+            <view class="weui-flex__item">
+              <view class='buttonicon fa fa-file-image-o' bindtap="sendPicture">
+
               </view>
               <view class='buttontxt'>图片</view>
             </view>
             <view class="weui-flex__item">
-              <view class='buttonicon fa fa-file-sound-o'  bindtap="sendVoice">
+              <view class='buttonicon fa fa-file-sound-o' bindtap="sendVoice">
               </view>
               <view class='buttontxt'>语音</view>
             </view>
             <view class="weui-flex__item">
-              <view class='buttonicon fa fa-file-video-o'  bindtap="sendVideo">
+              <view class='buttonicon fa fa-file-video-o' bindtap="sendVideo">
               </view>
               <view class='buttontxt'>视频</view>
             </view>
@@ -102,7 +117,7 @@
               <view class='buttontxt'>推荐</view>
             </view>
             <view class="weui-flex__item">
-              <view class='buttonicon fa fa-check-square-o weui-toptips_warn' style='color:white;border-color:white;'  bindtap="completeMeeting">
+              <view class='buttonicon fa fa-check-square-o weui-toptips_warn' style='color:white;border-color:white;' bindtap="completeMeeting">
               </view>
               <view class='buttontxt'>完成</view>
             </view>

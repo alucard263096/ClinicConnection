@@ -1,0 +1,64 @@
+<!--pages/order/order.wxml-->
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">预约状态</view>
+                    <view class="weui-form-preview__value_in-hd">{{order.status_name}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">付款金额</view>
+                    <view class="weui-form-preview__value_in-hd">¥{{order.amount}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">专家</view>
+                    <view class="weui-form-preview__value">{{order.doctor_id_name}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">预约时间</view>
+                    <view class="weui-form-preview__value">{{order.booking_date}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">咨询方式</view>
+                    <view class="weui-form-preview__value">{{order.booking_type_name}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">咨询问题</view>
+                    <view class="weui-form-preview__value">{{order.description}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">联系方式</view>
+                    <view class="weui-form-preview__value">{{order.contact}}</view>
+                </view>
+                <view class="weui-form-preview__item" wx:if="{{order.photos.length>0}}">
+                    <view class="weui-form-preview__label">图片</view>
+                    <view class="weui-form-preview__value" bindtap='viewPhotos'>查看上传图片</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='W'}}" bindtap='payOrder'>
+                <view  class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即支付</view>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='P'}}">
+                <view class="weui-form-preview__btn weui-form-preview__btn_warn" bindtap='refundRequest' hover-class="weui-form-preview__btn_active">退款</view>
+                <navigator class="weui-form-preview__btn weui-form-preview__btn_primary" url='/pages/meeting/meeting' open-type='switchTab' hover-class="weui-form-preview__btn_active">进入问答</navigator>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='RW'}}">
+                <navigator  class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">等待退款</navigator>
+            </view>
+        </view>
+                <view class='weui-cells__tips' wx:if="{{order.status=='RW'}}">我们通常会在1-3个工作日内完成退款，请耐心等候，有任何疑问请直接联系客服。</view>
+        <navigator style='right:0px;position:absolute;font-size:13px;' url="/pages/content/content?keycode=bookingagreement" class="weui-agree__link">《预约服务问答条款》</navigator>
+        
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                    <navigator url="" class="weui-footer__link">{{copyright.name}}</navigator>
+                </view>
+                <view class="weui-footer__text">Copyright © 2008-2018 {{copyright.website}}</view>
+            </view>
+        </view>
+    </view>
+</view>

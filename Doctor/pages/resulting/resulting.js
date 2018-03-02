@@ -12,7 +12,7 @@ class Resulting extends AppBase {
   onLoad(options) {
     console.log(options);
     this.Base.Page = this;
-    options.id=14;
+    //options.id=14;
     super.onLoad(options);
 
     var meetingMgr = new MeetingMgr();
@@ -84,6 +84,9 @@ class Resulting extends AppBase {
     var meetingApi = new MeetingApi();
     var data=this.Base.getMyData();
     var message=data.message;
+    if(message==""){
+      return;
+    }
     meetingApi.send({ meeting_id: this.Base.options.id, "type": "T", side: "D", message: message }, function (data) {
      
     });
@@ -199,6 +202,14 @@ class Resulting extends AppBase {
       url: '../mall/mall',
     })
   }
+  sendGoodsToPeople(cart) {
+    var meetingApi = new MeetingApi();
+    for(var i=0;i<cart.length;i++){
+      meetingApi.send({ meeting_id: this.Base.options.id, "type": "G", side: "D", message: cart[i].goods_id }, function (data) {
+
+      });
+    }
+  }
 }
 var resulting = new Resulting();
 var body = resulting.generateBodyJson();
@@ -217,4 +228,5 @@ body.playRecord = resulting.playRecord;
 body.gotoLiveMeeting = resulting.gotoLiveMeeting; 
 body.completeMeeting = resulting.completeMeeting;
 body.sendGoods = resulting.sendGoods;
+body.sendGoodsToPeople = resulting.sendGoodsToPeople;
 Page(body)

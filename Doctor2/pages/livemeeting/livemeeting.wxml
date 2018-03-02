@@ -1,0 +1,7 @@
+<!--pages/livemeeting/livemeeting.wxml-->
+<block wx:if="{{id!=''}}">
+<live-player src="{{pushpath}}{{id}}_D" mode="RTC" autoplay bindstatechange="rtmpstatechange" binderror="error" style="width: 100vw; height: 100vh" />
+
+<live-pusher url="{{rtmppath}}{{id}}_P?vhost=live.app-link.org" mode="RTC" autopush bindstatechange="pushstatechange" style="position:absolute;right:5vw;top:5vw; width: 100px; height: 177px;" />
+
+</block>

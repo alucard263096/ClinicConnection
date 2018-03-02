@@ -38,7 +38,7 @@
                   <view style='text-align:right;' wx:if="{{item.cartqty>0}}">
                     <image id="{{item.id}}" bindtap='minusToCart' src="../../images/icons/remove.png" class='btnopt'></image>
                     <text class='qty'>{{item.cartqty}}</text>
-                    <image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image>
+                    <image id="{{item.id}}" src="../../images/icons/plus.png" class='btnopt'></image>
                   </view>
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
@@ -54,7 +54,7 @@
 
 
       <view class="flex-row" style='height:10vh;background:white;'>
-        <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;'>选好了</view>
+        <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;' bindtap='confirmGoods'>选好了</view>
       </view>
 
   </view>

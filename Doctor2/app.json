@@ -1,12 +1,60 @@
 {
-  "pages":[
+  "pages": [
+    "pages/doctor/doctor",
+    "pages/home/home",
+    "pages/meeting/meeting",
+    "pages/resulting/resulting",
+    "pages/goods/goods",
+    "pages/mall/mall",
+    "pages/livemeeting/livemeeting",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/report/report",
+    "pages/order/order",
+    "pages/content/content",
+    "pages/member/member",
+    "pages/success/success",
+    "pages/schedule/schedule",
+    "pages/signup/signup",
+    "pages/doctorlist/doctorlist",
+    "pages/logs/logs",
+    "pages/orderlist/orderlist",
+    "pages/track/track"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "深圳市资讯管理有限公司",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "E联星空",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#FF5155",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/doctor/doctor",
+        "iconPath": "images/icons/doctor.png",
+        "selectedIconPath": "images/icons/doctor-a.png"
+      },
+      {
+        "text": "购物车",
+        "pagePath": "pages/mall/mall",
+        "iconPath": "images/icons/cart.png",
+        "selectedIconPath": "images/icons/cart-a.png"
+      },
+      {
+        "text": "会谈室",
+        "pagePath": "pages/meeting/meeting",
+        "iconPath": "images/icons/booking.png",
+        "selectedIconPath": "images/icons/booking-a.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/member/member",
+        "iconPath": "images/icons/me.png",
+        "selectedIconPath": "images/icons/me-a.png"
+      }
+    ]
   }
 }

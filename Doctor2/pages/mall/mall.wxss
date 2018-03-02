@@ -1,0 +1,25 @@
+/* pages/mall/mall.wxss */
+.category{
+  text-align: center;
+  padding:2vh;
+  font-size: 80%;
+  border-bottom: 1px solid #d9d9d9;
+}
+.active{
+  background-color:white;
+  border-left: 2px solid #FF5155;
+}
+.oldprice{
+  margin-left: 10px;
+  font-size: 12px;
+  text-decoration: line-through;
+  color:#999;
+}
+.btnopt{
+  width:22px;
+  height:22px;
+}
+.qty{
+  padding-left: 1vw;
+  padding-right: 1vw;
+}

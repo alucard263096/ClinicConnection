@@ -33,7 +33,7 @@ class Mall extends AppBase {
     var neednew=false;
     for (var i = 0; i < this.cart.length;i++){
       if(this.cart[i].goods_id==id){
-        this.cart[i].qty = this.cart[i].qty + 1;
+        this.cart[i].qty = 1;//this.cart[i].qty +
         neednew = true;
         break;
       }
@@ -99,6 +99,16 @@ class Mall extends AppBase {
       url: '../goods/goods?id='+id,
     });
   }
+  confirmGoods(){
+    var pages = getCurrentPages();
+    var preg = pages[pages.length - 2];
+    preg.sendGoodsToPeople(this.cart);
+    //var id = e.currentTarget.id;
+    wx.navigateBack({
+
+    })
+  }
+  
 }
 
 var mall = new Mall();
@@ -108,6 +118,7 @@ body.onLoad = mall.onLoad;
 body.setSelectedCategory = mall.setSelectedCategory;
 body.addToCart = mall.addToCart; 
 body.updateCartData = mall.updateCartData; 
-body.minusToCart = mall.minusToCart;
+body.minusToCart = mall.minusToCart; 
 body.gotoGoods = mall.gotoGoods;
+body.confirmGoods = mall.confirmGoods;
 Page(body)

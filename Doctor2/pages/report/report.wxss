@@ -1,0 +1,54 @@
+/* pages/report/report.wxss */
+.weui-flex__item{
+  font-size: 14px;
+}
+.table{
+  background: white;
+  width: 99vw;
+  font-size: 14px;
+  border-top:1px solid #ccc;
+  border-left:1px solid #ccc;
+}
+.flex-row{
+  display: flex;
+  text-align: center;
+}
+.flex-row view{
+  border-right:1px solid #ccc;
+  border-bottom:1px solid #ccc;
+  padding-top:1vw;
+  padding-bottom:1vw;
+}
+textarea{
+  width:95%;
+  text-align: left;
+  padding:1vw;
+}
+.flex-1{
+  flex:1;
+}
+.flex-2{
+  flex:2;
+}
+.flex-3{
+  flex:3;
+}
+.flex-4{
+  flex:4;
+}
+.flex-5{
+  flex:5;
+}
+.flex-6{
+  flex:6;
+}
+.star{
+  color: #ccc;
+  font-size:25px;
+  padding:1vw;
+  padding-top:2vh;
+  padding-bottom:2vh;
+}
+.star-selected{
+  color: goldenrod;
+}

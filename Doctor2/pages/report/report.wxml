@@ -1,0 +1,108 @@
+<!--pages/report/report.wxml-->
+<view class="page">
+  <view class="page__hd">
+    <view class="page__title" style='text-align:center;padding-top:5vh;'>{{member_id_name}}的问诊报告书</view>
+  </view>
+  <view class="page__hd" style='padding-top:3vw;'>
+    <view class="table">
+      <view class='flex-row'>
+
+        <view class="flex-1">
+          姓名
+        </view>
+        <view class="flex-1">
+          {{member_id_name}}
+        </view>
+        <view class="flex-1">
+          问答方式
+        </view>
+        <view class="flex-1">
+          {{mtype_name}}
+        </view>
+      </view>
+      <view class='flex-row'>
+        <view class="flex-1">
+          联系方式
+        </view>
+        <view class="flex-3">
+          {{contact}}
+        </view>
+      </view>
+      <view class='flex-row'>
+        <view class="flex-1">
+          描述症状
+        </view>
+        <view class="flex-3">
+          {{description}}
+        </view>
+      </view>
+      <view class='flex-row'>
+        <view class="flex-1">
+          相关图片
+        </view>
+        <view class="flex-3">
+          <view style='border:0px;'>
+            <image wx:for="{{photos}}" wx:key="k" src="{{uploadpath}}order/{{item.photo}}" style='width:20vw;margin-right:1vw;' mode='widthFix' bindtap='viewPhoto' />
+          </view>
+        </view>
+      </view>
+      <view class='flex-row'>
+        <view class="flex-1">
+          诊断原因
+        </view>
+        <view class="flex-3">
+          {{reason}}
+        </view>
+      </view>
+      <view class='flex-row'>
+        <view class="flex-1">
+          诊断过程
+        </view>
+        <view class="flex-3">
+          {{procedure}}
+        </view>
+      </view>
+      <view class='flex-row'>
+        <view class="flex-1">
+          诊断结果
+        </view>
+        <view class="flex-3">
+          {{result}}
+        </view>
+      </view>
+
+    </view>
+    <view class="weui-cells__title">我的评分</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">服务态度</view>
+        </view>
+        <view class="weui-cell__bd">
+          <text wx:for="12345" wx:key="k" class='star {{assess_service>=item?"star-selected":""}} fa fa-star' id="{{item}}" bindtap="updateServiceAssess"></text>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">专业技能</view>
+        </view>
+        <view class="weui-cell__bd">
+          <text wx:for="12345" wx:key="k" class='star {{assess_technic>=item?"star-selected":""}} fa fa-star' id="{{item}}" bindtap="updateTechnicAssess"></text>
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">解决问题</view>
+        </view>
+        <view class="weui-cell__bd">
+          <text wx:for="12345" wx:key="k" class='star {{assess_solute>=item?"star-selected":""}} fa fa-star' id="{{item}}" bindtap="updateSoluteAssess"></text>
+        </view>
+      </view>
+    </view>
+    <view class="page__bd page__bd_spacing" style='padding:2vh;' wx:if="{{status=='C'}}">
+        <button class="weui-btn" bindtap='endMeeting' type="primary" >提交评分</button>
+    </view>
+
+
+  </view>
+</view>

@@ -114,6 +114,7 @@ export class AppBase{
           console.log(data);
           data = JSON.parse(data);
           console.log(data);
+          console.log("openid");
           ApiConfig.SetToken(data.openid);
           var memberApi=new MemberApi();
           memberApi.info({},function(data){

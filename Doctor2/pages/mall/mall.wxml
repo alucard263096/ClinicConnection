@@ -1,0 +1,62 @@
+<view class="page">
+  <view class="page__bd">
+
+    <view class="weui-cells weui-cells_after-title" style='height:90vh;border-bottom:0px;'>
+      <view class="weui-cell" style='padding:0px;'>
+        <view class="weui-cell__hd" style="position: relative;;width:25vw;height:90vh;background-color:#f2f2f2;">
+          <block wx:for="{{categories}}" wx:key="k">
+            <view class='category {{category.id==item.id?"active":""}}' bindtap='setSelectedCategory' id="{{item.id}}">
+              {{item.name}}
+              <view wx:if="{{item.cartqty>0}}" class="weui-badge" style="position: absolute;margin-left:2vw;">{{item.cartqty}}</view>
+            </view>
+          </block>
+        </view>
+        <view class="weui-cell__bd" style='height:90vh;'>
+          <view class="weui-loadmore " wx:if="{{category.goods.length==0}}">
+            暂无数据
+          </view>
+          <view class="weui-media-box weui-media-box_small-appmsg" wx:if="{{category.goods.length>0}}">
+            <view class="weui-cells weui-cells_in-small-appmsg">
+              <view wx:for="{{category.goods}}" wx:key="key" class="weui-cell weui-cell_access">
+                <view class="weui-cell__hd">
+                  <image src="{{uploadpath}}goods/{{item.cover}}" style="width: 10vw;height: 10vw;margin-right: 5px" />
+                </view>
+                <view class="weui-cell__bd weui-cell_primary">
+                  <view class="weui-media-box weui-media-box_text" style='padding-right:0px;' bindtap='gotoGoods' id="{{item.id}}" >
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
+                    <view>
+                      <text class='primary'>￥{{item.price}}</text>
+                      <text wx:if="{{item.price<item.oriprice}}" class="oldprice">￥{{item.oriprice}}</text>
+                    </view>
+                    <view class="weui-media-box__desc" style='margin-top:2vh;'>
+                      <text decode="true">{{item.summary}}</text>
+                    </view>
+                  </view>
+                  <view style='text-align:right;' wx:if="{{item.cartqty==0}}">
+                    <image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image>
+                  </view>
+                  <view style='text-align:right;' wx:if="{{item.cartqty>0}}">
+                    <image id="{{item.id}}" bindtap='minusToCart' src="../../images/icons/remove.png" class='btnopt'></image>
+                    <text class='qty'>{{item.cartqty}}</text>
+                    <image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image>
+                  </view>
+                </view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+
+
+            </view>
+          </view>
+
+        </view>
+      </view>
+    </view>
+
+
+      <view class="flex-row" style='height:10vh;background:white;'>
+        <view style='flex:7;color:#0BB20C;padding-left:10px;padding-top:3vh;'>￥{{totalprice}}</view>
+        <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;'>选好了</view>
+      </view>
+
+  </view>
+</view>
