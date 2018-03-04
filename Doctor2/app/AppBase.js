@@ -88,7 +88,7 @@ export class AppBase{
   setBasicInfo(){
     var that=this;
     var options = this.options;
-    //options.unicode = "vista";
+    options.unicode = "mamidx";
     if (ApiConfig.UNICODE==""&&options.unicode == undefined) {
       //ApiConfig.SetUnicode("vista");
       //ApiConfig.SetToken("oo7cm0Rf0NNG4zqieBcS4LxJv_9E");

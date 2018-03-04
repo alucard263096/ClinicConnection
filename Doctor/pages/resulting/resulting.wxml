@@ -41,15 +41,15 @@
             <view class='msg' wx:if="{{item.type=='G'}}" style='display:flex;'>
 
               <view style='display:flex;background:white;padding:1vh;border-radius:0.5vh;'>
-              <view >
-                <image src="{{uploadpath}}goods/{{item.goods.cover}}" style='width:15vw;' mode="widthFix"></image>
-              </view>
-              <view style='width:40vw'>
-              <view class="weui-media-box__title weui-media-box__title_in-text"> {{item.goods.name}}</view>
-          <view class="weui-media-box__desc">
-            <text>{{item.goods.summary}}</text>
-          </view>
-              </view>
+                <view>
+                  <image src="{{uploadpath}}goods/{{item.goods.cover}}" style='width:15vw;' mode="widthFix"></image>
+                </view>
+                <view style='width:40vw;margin-left:10px;'>
+                  <view class="weui-media-box__title weui-media-box__title_in-text"> {{item.goods.name}}</view>
+                  <view class="weui-media-box__desc">
+                    <text>{{item.goods.summary}}</text>
+                  </view>
+                </view>
               </view>
             </view>
           </view>

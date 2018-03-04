@@ -20,6 +20,9 @@ class Meeting extends AppBase {
     });
   }
   onShow() {
+    if (this.Base.isLogined() == false) {
+      this.Base.askLogin();
+    }
     var that = this;
     var meetingApi=new MeetingApi();
     meetingApi.list({"status":"W,P",doctor_id:AppBase.DOCTORID},function(data){

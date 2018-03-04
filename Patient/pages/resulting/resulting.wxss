@@ -5,10 +5,16 @@
 .msg{
   margin-top:1vh;
 }
+.msg button{
+text-align: left;
+}
 .pmsg{
   margin-top:1vh;
   text-align: right;
   padding-right:10px;
+}
+.pmsg button{
+text-align: right;
 }
 .message{
   max-width: 60vw;

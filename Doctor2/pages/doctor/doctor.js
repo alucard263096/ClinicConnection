@@ -9,7 +9,7 @@ class Doctor extends AppBase {
   onLoad(options) {
     console.log(options);
     this.Base.Page = this;
-    //options.id="2";
+    options.id=9;
     super.onLoad(options);
     AppBase.DOCTORID = options.id;
     
