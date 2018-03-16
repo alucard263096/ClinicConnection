@@ -11,21 +11,50 @@ class Order extends AppBase {
     this.Base.Page = this;
    
     super.onLoad(options);
-
-    var memberApi = new MemberApi();
-    var that = this;
-    memberApi.addresslist({},function(data){
-      that.Base.setMyData({ list: data});
-    });
+    if(options.needreturn=="Y"){
+      this.Base.setMyData({ needreturn: "Y" });
+    }
   }
   onShow() {
+    var memberApi = new MemberApi();
     var that = this;
+    memberApi.addresslist({}, function (data) {
+      that.Base.setMyData({ list: data });
+    });
   }
-
+  editAddress(e){
+    var id=e.currentTarget.id;
+    wx.navigateTo({
+      url: '../memberaddressadd/memberaddressadd?id='+id,
+    })
+  }
+  deleteAddress(e){
+    var id = e.currentTarget.id;
+    var that=this;
+    var memberApi = new MemberApi();
+    memberApi.addressdelete({idlist:id},function(){
+      that.onShow();
+    });
+  }
+  chooseAddress(e){
+    var id = e.currentTarget.id;
+    var pages=getCurrentPages();
+    var prevpage=pages[pages.length-2];
+    console.log(prevpage.setAddress);
+    if (prevpage.setAddress!=undefined){
+      prevpage.setAddress(id);
+    }
+    wx.navigateBack({
+      
+    })
+  }
 }
 
 var order = new Order();
 var body = order.generateBodyJson();
-body.onLoad = order.onLoad;
+body.onLoad = order.onLoad; 
 body.onShow = order.onShow;
+body.editAddress = order.editAddress;
+body.deleteAddress = order.deleteAddress;
+body.chooseAddress = order.chooseAddress;
 Page(body)

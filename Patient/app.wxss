@@ -37,3 +37,6 @@ page{
 .text-right{
   text-align: right;
 }
+.font-14{
+  font-size: 14px;
+}

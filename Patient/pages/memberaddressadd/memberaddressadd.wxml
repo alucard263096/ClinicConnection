@@ -1,0 +1,52 @@
+<!--pages/memberaddressadd/memberaddressadd.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{showTopTips}}</view>
+
+    <view class="weui-cells__title">请填写联系信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">收件人</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="必填" value='{{name}}' bindinput='inputName' maxlength='10' />
+        </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">手机号码</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input class="weui-input" placeholder="必填" value='{{mobile}}' bindinput='inputMobile' maxlength='11' />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">详细地址</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="必填" style="height: 3.3em" value='{{address}}' bindinput='inputAddress' maxlength='200' />
+          <view class="weui-textarea-counter">{{address.length}}/200</view>
+        </view>
+      </view>
+    </view>
+
+    <checkbox-group bindchange="bindDefault">
+      <label class="weui-agree" for="weuiAgree">
+        <view class="weui-agree__text">
+          <checkbox class="weui-agree__checkbox" id="weuiAgree" value="agree" checked="{{is_default=='Y'}}" />
+          <view class="weui-agree__checkbox-icon">
+            <icon class="weui-agree__checkbox-icon-check" type="success_no_circle" size="9" wx:if="{{is_default=='Y'}}"></icon>
+          </view>
+          设置为默认地址
+        </view>
+      </label>
+    </checkbox-group>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="saveAddress">保存</button>
+    </view>
+  </view>
+</view>

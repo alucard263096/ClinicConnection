@@ -16,16 +16,54 @@ class Order extends AppBase {
     var cart=decodeURIComponent(options.data);
     var goodsApi = new GoodsApi();
     var that = this;
-    this.Base.setMyData({cart:cart});
+    this.Base.setMyData({cart:cart,addressid:0});
+    var memberApi=new MemberApi();
+    memberApi.addresslist({is_default:"Y"},function(data){
+      console.log("default address");
+      console.log(data);
+      if(data.length>0){
+        that.Base.setAddress(data[0].id)
+      }
+    });
   }
   onShow() {
     var that = this;
   }
-  
+  gotoMemberAddress(){
+    wx.navigateTo({
+      url: '/pages/memberaddress/memberaddress?needreturn=Y',
+    })
+  }
+  setAddress(id) {
+    var that = this;
+    var memberApi = new MemberApi();
+    memberApi.addressdetail({ id: id }, function (data) {
+      if(that.Base==undefined){
+
+        that.setMyData({
+          addressid: id,
+          addressname: data.name,
+          addressmobile: data.mobile,
+          address: data.address
+        });
+      }else{
+
+
+        that.Base.setMyData({
+          addressid: id,
+          addressname: data.name,
+          addressmobile: data.mobile,
+          address: data.address
+        });
+      }
+    });
+  }
 }
 
 var order = new Order();
 var body = order.generateBodyJson();
-body.onLoad = order.onLoad;
+body.onLoad = order.onLoad; 
 body.onShow = order.onShow;
+body.gotoMemberAddress = order.gotoMemberAddress;
+body.setAddress = order.setAddress;
 Page(body)

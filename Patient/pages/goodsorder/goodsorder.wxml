@@ -4,11 +4,20 @@
     <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{showTopTips}}</view>
     <view class="weui-cells__title">收件信息</view>
     <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell">
-        <view class="weui-cell__hd">
-          <label class='fa fa-map-marker'></label>
+      <view class="weui-cell" bindtap='gotoMemberAddress'>
+        <view class="weui-cell__bd" style='padding-left:10px;' wx:if="{{addressid==0}}">请选择收货方式</view>
+        <view class="weui-cell__bd" style='padding-left:10px;' wx:else>
+          <view class='flex-row'>
+            <view>
+              <label class='fa fa-user-o'></label> {{addressname}}</view>
+            <view style='margin-left:10px;'>
+              <label class='fa fa-phone'></label> {{addressmobile}}</view>
+          </view>
+          <view style='margin-top:10px;'>
+            <view>
+              <label class='fa fa-map-marker'></label> {{address}}</view>
+          </view>
         </view>
-        <view class="weui-cell__bd" style='padding-left:10px;' bindtap='gotoMemberAddress'>请选择收货方式</view>
         <view class="weui-cell__ft">
           <label class='fa fa-angle-right'></label>
         </view>
