@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/memberaddress/memberaddress",
+    "pages/goodsorder/goodsorder",
     "pages/home/home",
     "pages/meeting/meeting",
     "pages/resulting/resulting",

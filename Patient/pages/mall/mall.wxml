@@ -22,7 +22,7 @@
                   <image src="{{uploadpath}}goods/{{item.cover}}" style="width: 10vw;height: 10vw;margin-right: 5px" />
                 </view>
                 <view class="weui-cell__bd weui-cell_primary">
-                  <view class="weui-media-box weui-media-box_text" style='padding-right:0px;' bindtap='gotoGoods' id="{{item.id}}" >
+                  <view class="weui-media-box weui-media-box_text" style='padding-right:0px;' bindtap='gotoGoods' id="{{item.id}}">
                     <view class="weui-media-box__title weui-media-box__title_in-text">{{item.name}}</view>
                     <view>
                       <text class='primary'>￥{{item.price}}</text>
@@ -35,28 +35,53 @@
                   <view style='text-align:right;' wx:if="{{item.cartqty==0}}">
                     <image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image>
                   </view>
-                  <view style='text-align:right;' wx:if="{{item.cartqty>0}}">
-                    <image id="{{item.id}}" bindtap='minusToCart' src="../../images/icons/remove.png" class='btnopt'></image>
-                    <text class='qty'>{{item.cartqty}}</text>
-                    <image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image>
+                  <view style='text-align:right;' class='flex-row' wx:if="{{item.cartqty>0}}">
+                  <view class='flex-1'></view>
+                  <view><image id="{{item.id}}" bindtap='minusToCart' src="../../images/icons/remove.png" class='btnopt'></image></view>
+                  <view  class='qty'>{{item.cartqty}}</view>
+                  <view><image id="{{item.id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image></view>
                   </view>
                 </view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"></view>
               </view>
-
-
             </view>
           </view>
 
         </view>
       </view>
     </view>
-
-
-      <view class="flex-row" style='height:10vh;background:white;'>
-        <view style='flex:7;color:#0BB20C;padding-left:10px;padding-top:3vh;'>￥{{totalprice}}</view>
-        <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;'>选好了</view>
+    <view class="flex-row" style='height:10vh;background:white;' wx:if="{{cart.length>0}}">
+      <view style='flex:7;color:#0BB20C;padding-left:10px;padding-top:3vh;' bindtap='checkCart'>
+        <label class='fa fa-shopping-cart'></label>￥{{totalprice}}</view>
+      <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;' bindtap='gotoOrder'>选好了</view>
+    </view>
+  </view>
+</view>
+<view class='cartlist' wx:if='{{showingcart==true}}'  >
+  <view style='width:100vw;height:100%;' bindtap='closeCartlist'></view>
+  <view class='listbody'>
+    <view class='flex-row bg-gray'>
+      <view class='flex-1 weui-msg__desc cleancart'>
+        <label class=' fa fa-trash-o' bindtap='cleanCart'></label>
+        <text bindtap='cleanCart'>清空购物车</text>
       </view>
-
+      <view class='flex-1 text-right'>
+        <label class='fa fa-close' bindtap='closeCartlist'></label>
+      </view>
+    </view>
+    <view class='flex-row' wx:for="{{cart}}" wx:key="cart">
+      <view class="cart-item" style='flex:3;'>{{item.info.name}}</view>
+      <view class="cart-item primary" style='flex:1;'>￥{{item.qty*item.info.price}}</view>
+      <view class="cart-item flex-row" style='flex:1;'>
+      <view><image id="{{item.goods_id}}" bindtap='minusToCart' src="../../images/icons/remove.png" class='btnopt'></image></view>
+      <view class='qty'>{{item.qty}}</view>
+      <view><image id="{{item.goods_id}}" bindtap='addToCart' src="../../images/icons/plus.png" class='btnopt'></image></view>
+                    </view>
+    </view>
+    <view class="flex-row" style='height:10vh;background:white;'  wx:if="{{cart.length>0}}">
+      <view style='flex:7;color:#0BB20C;padding-left:10px;padding-top:3vh;'>
+        <label class='fa fa-shopping-cart'></label>￥{{totalprice}}</view>
+      <view style='flex:3;background:#0BB20C;color:white;padding-top:3vh;text-align:center;' bindtap='gotoOrder'>选好了</view>
+    </view>
   </view>
 </view>

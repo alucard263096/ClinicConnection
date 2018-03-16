@@ -1,0 +1,18 @@
+<!--pages/goodsorder/goodsorder.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{showTopTips}}</view>
+    <view class="weui-cells__title">收件信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__hd">
+          <label class='fa fa-map-marker'></label>
+        </view>
+        <view class="weui-cell__bd" style='padding-left:10px;' bindtap='gotoMemberAddress'>请选择收货方式</view>
+        <view class="weui-cell__ft">
+          <label class='fa fa-angle-right'></label>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

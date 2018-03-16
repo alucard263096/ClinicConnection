@@ -50,6 +50,7 @@ class Mall extends AppBase {
         break;
       }
     }
+    console.log(this.cart);
     if (neednew == false){
       this.cart.push({goods_id:id,qty:1});
     }
@@ -68,12 +69,16 @@ class Mall extends AppBase {
     }
     this.updateCartData();
   }
-  updateCartData(){
+  updateCartData() {
+    var categories = this.Base.getMyData().categories;
+    if(categories==undefined){
+      return;
+    }
     var memberapi = new MemberApi();
     memberapi.updatecart({cart:JSON.stringify(this.cart)}, function (data) {},false);
-    var categories = this.Base.getMyData().categories;
     var category = this.Base.getMyData().category;
     var cart = this.cart;
+    console.log(categories);
     for(var i=0;i<categories.length;i++){
 
       categories[i].cartqty = 0;
@@ -103,6 +108,8 @@ class Mall extends AppBase {
       totalprice += Number(cart[k].info.price * cart[k].qty);
     }
     totalprice = totalprice.toFixed(2);
+    console.log("cart");
+    console.log(cart);
     this.Base.setMyData({ categories: categories, category: category,cart:cart,totalprice:totalprice });
   }
   
@@ -112,16 +119,53 @@ class Mall extends AppBase {
       url: '../goods/goods?id='+id,
     });
   }
+  checkCart(){
+    if(this.cart.length>0){
+      this.Base.setMyData({ showingcart: true });
+    }
+  }
+  closeCartlist(){
+    this.Base.setMyData({ showingcart: false });
+  }
+  cleanCart(){
+    var that=this;
+    wx.showModal({
+      title: '提示',
+      content: '是否确认清空购物车？',
+      success:function(e){
+        if(e.confirm){
+          that.cart = [];
+          that.updateCartData();
+          that.Base.setMyData({ showingcart: false });
+        }
+      }
+    })
+  }
+  gotoOrder(){
+    var that = this;
+    if (this.Base.isLogined()) {
+      wx.navigateTo({
+        url: '../goodsorder/goodsorder?data='+JSON.stringify(this.cart),
+      });
+    } else {
+      this.Base.askLogin();
+    }
+  }
 }
 
 var mall = new Mall();
 var body = mall.generateBodyJson();
 body.cart=[];
+body.data.showingcart=false;
 body.onLoad = mall.onLoad;
 body.onShow = mall.onShow;
 body.setSelectedCategory = mall.setSelectedCategory;
 body.addToCart = mall.addToCart; 
 body.updateCartData = mall.updateCartData; 
-body.minusToCart = mall.minusToCart;
-body.gotoGoods = mall.gotoGoods;
+body.minusToCart = mall.minusToCart; 
+body.gotoGoods = mall.gotoGoods; 
+body.checkCart = mall.checkCart; 
+body.closeCartlist = mall.closeCartlist; 
+body.cleanCart = mall.cleanCart;
+body.gotoOrder = mall.gotoOrder;
 Page(body)

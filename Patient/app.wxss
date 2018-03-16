@@ -15,6 +15,9 @@
 page{
   background-color: #F2F2F2;
 }
+.bg-gray{
+  background-color: #F2F2F2;
+}
 .weui-footer{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -25,6 +28,12 @@ page{
 .flex-row{
   display: flex;
 }
+.flex-1{
+  flex: 1;
+}
 .primary{
   color:#FF5155;
+}
+.text-right{
+  text-align: right;
 }

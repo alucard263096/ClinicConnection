@@ -1,0 +1,6 @@
+<!--pages/memberaddress/memberaddress.wxml-->
+
+
+<view class="btnadd" >
+<button class="weui-btn" type="primary" bindtap='addNew' >添加新地址</button>
+</view>
