@@ -48,6 +48,11 @@ class Order extends AppBase {
       
     })
   }
+  addNew(){
+    wx.navigateTo({
+      url: '/pages/memberaddressadd/memberaddressadd',
+    })
+  }
 }
 
 var order = new Order();
@@ -57,4 +62,5 @@ body.onShow = order.onShow;
 body.editAddress = order.editAddress;
 body.deleteAddress = order.deleteAddress;
 body.chooseAddress = order.chooseAddress;
+body.addNew = order.addNew;
 Page(body)
