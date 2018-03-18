@@ -50,7 +50,7 @@
             </view>
         </view>
                 <view class='weui-cells__tips' wx:if="{{order.status=='RW'}}">我们通常会在1-3个工作日内完成退款，请耐心等候，有任何疑问请直接联系客服。</view>
-        <navigator style='right:0px;position:absolute;font-size:13px;' url="/pages/content/content?keycode=bookingagreement" class="weui-agree__link">《预约服务问答条款》</navigator>
+        <navigator style='right:0px;position:absolute;font-size:13px;margin-top:10px;' url="/pages/content/content?keycode=bookingagreement" class="weui-agree__link">《预约服务问答条款》</navigator>
         
         <view class="weui-msg__extra-area">
             <view class="weui-footer">

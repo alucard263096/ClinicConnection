@@ -1,8 +1,10 @@
-// pages/order/order.js
+// pages/doctorlist/doctorlist.js
 import { AppBase } from "../../app/AppBase";
 import { ApiConfig } from "../../apis/apiconfig";
-import { OrderApi } from "../../apis/order.api";
+import { MemberApi } from "../../apis/member.api";
+import { GoodsApi } from "../../apis/goods.api";
 import { WechatApi } from "../../apis/wechat.api";
+
 
 class Order extends AppBase {
   constructor() {
@@ -10,32 +12,22 @@ class Order extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=5;
+
     super.onLoad(options);
   }
-  onShow(){
-    var that=this;
-    var orderApi=new OrderApi();
-    orderApi.detail({id:this.Base.options.id},function(data){
-        that.Base.setMyData({order:data});
+  onShow() {
+    var goodsApi = new GoodsApi();
+    var that = this;
+    goodsApi.orderdetail({id:this.Base.options.id}, function (data) {
+      that.Base.setMyData({ order: data });
     });
-  }
-  viewPhotos(){
-    var data = this.Base.getMyData();
-    var order=data.order;
-    var photos=order.photos;
-    var nphotos=[];
-    for(var i=0;i<photos.length;i++){
-      nphotos.push(photos[i].photo);
-    }
-    this.Base.viewGallary("order", nphotos);
   }
   payOrder() {
     var that = this;
     var wechatApi = new WechatApi();
     console.log(this.Base.options.id);
-    wechatApi.prepay({id:this.Base.options.id},function(data){
-      if(data.code==0){
+    wechatApi.prepay({ id: this.Base.options.id,"type":"goods" }, function (data) {
+      if (data.code == 0) {
         wx.requestPayment({
           'timeStamp': data.timeStamp,
           'nonceStr': data.nonceStr,
@@ -55,28 +47,27 @@ class Order extends AppBase {
             that.Base.error(res.err_desc);
           }
         })
-      }else{
+      } else {
         that.Base.error(data.result);
       }
     });
   }
-
-  refundRequest(){
-    var that=this;
+  refundRequest() {
+    var that = this;
     wx.showModal({
       title: '警告',
       content: "确定要退款？",
       success: function (res) {
         if (res.confirm) {
-          var orderApi = new OrderApi();
-          orderApi.refund({ id: that.Base.options.id }, function (data) {
-            if(data.code=="0"){
+          var goodsApi = new GoodsApi();
+          goodsApi.orderrefund({ id: that.Base.options.id }, function (data) {
+            if (data.code == "0") {
               var order = that.Base.getMyData().order;
               order.status = "RW";
               order.status_name = "等待退款";
               that.Base.setMyData({ order: order });
               that.Base.info("申请退款成功，稍后客服将会为您退款");
-            }else{
+            } else {
               that.Base.error("申请退款失败，请重新尝试");
             }
           });
@@ -86,15 +77,26 @@ class Order extends AppBase {
       }
     })
   }
+  setSuccess(){
+    var goodsApi = new GoodsApi();
+    var that=this;
+    goodsApi.orderfinish({ id: that.Base.options.id }, function (data) {
+      if(data.code=="0"){
+        wx.navigateBack({
+          
+        })
+      }else{
+        that.Base.warning("操作失败，请重试或联系管理员");
+      }
+    });
+  }
 }
 
-var order=new Order();
+var order = new Order();
 var body = order.generateBodyJson();
-body.onLoad = order.onLoad;
+body.onLoad = order.onLoad; 
 body.onShow = order.onShow; 
-body.viewPhotos = order.viewPhotos;
-body.payOrder = order.payOrder;
+body.payOrder = order.payOrder; 
 body.refundRequest = order.refundRequest;
-
-
+body.setSuccess = order.setSuccess;
 Page(body)

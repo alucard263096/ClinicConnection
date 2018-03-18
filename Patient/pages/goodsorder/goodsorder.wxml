@@ -5,8 +5,8 @@
     <view class="weui-cells__title">收件信息</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell" bindtap='gotoMemberAddress'>
-        <view class="weui-cell__bd" style='padding-left:10px;' wx:if="{{addressid==0}}">请选择收货方式</view>
-        <view class="weui-cell__bd" style='padding-left:10px;' wx:else>
+        <view class="weui-cell__bd" style='' wx:if="{{addressid==0}}">请选择收货方式</view>
+        <view class="weui-cell__bd" style='' wx:else>
           <view class='flex-row'>
             <view>
               <label class='fa fa-user-o'></label> {{addressname}}</view>

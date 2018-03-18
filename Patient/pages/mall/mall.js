@@ -12,23 +12,22 @@ class Mall extends AppBase {
     this.Base.Page = this;
     super.onLoad(options);
 
-    var goodsApi = new GoodsApi();
-    var that = this;
-    goodsApi.categorylist({}, function (data) {
-      that.setData({ categories: data, category: data[0] });
-      
-    });
 
   }
   onShow() {
     var that = this;
-    var memberapi = new MemberApi();
-    memberapi.getcart({}, function (data) {
-      console.log("a");
-      console.log(data);
-      that.cart = data;
-      that.updateCartData();
-    });
+    var goodsApi = new GoodsApi();
+    goodsApi.categorylist({}, function (data) {
+      that.setData({ categories: data, category: data[0] });
+      var memberapi = new MemberApi();
+      memberapi.getcart({}, function (data) {
+        console.log("a");
+        console.log(data);
+        that.cart = data;
+        that.updateCartData();
+      }, false);
+    },false);
+    
   }
   setSelectedCategory(e) {
     var id = e.currentTarget.id;

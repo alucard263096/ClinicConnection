@@ -1,8 +1,11 @@
 {
   "pages": [
-    "pages/goodsorder/goodsorder",
     "pages/home/home",
+    "pages/goodsorderpayment/goodsorderpayment",
+    "pages/expressinfo/expressinfo",
     "pages/member/member",
+    "pages/goodsorderlist/goodsorderlist",
+    "pages/goodsorder/goodsorder",
     "pages/memberaddress/memberaddress",
     "pages/memberaddressadd/memberaddressadd",
     "pages/meeting/meeting",

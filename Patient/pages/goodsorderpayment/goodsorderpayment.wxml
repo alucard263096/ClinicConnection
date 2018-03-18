@@ -1,0 +1,80 @@
+<!--pages/order/order.wxml-->
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-form-preview">
+            <view class="weui-form-preview__hd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">订单状态</view>
+                    <view class="weui-form-preview__value_in-hd">{{order.status_name}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">付款金额</view>
+                    <view class="weui-form-preview__value_in-hd">¥{{order.amount}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__bd">
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">订单号</view>
+                    <view class="weui-form-preview__value">{{order.orderno}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">商品金额</view>
+                    <view class="weui-form-preview__value">¥{{order.goodsamount}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">快递费用</view>
+                    <view class="weui-form-preview__value">¥{{order.expressfee}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">附加信息</view>
+                    <view class="weui-form-preview__value">{{order.comment}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">收货人</view>
+                    <view class="weui-form-preview__value">{{order.addressname}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">收货电话</view>
+                    <view class="weui-form-preview__value">{{order.addressmobile}}</view>
+                </view>
+                <view class="weui-form-preview__item">
+                    <view class="weui-form-preview__label">收货地址</view>
+                    <view class="weui-form-preview__value">{{order.address}}</view>
+                </view>
+                <view class="weui-form-preview__item" wx:if="{{order.expressno!=null&&order.expressno!=''}}">
+                    <view class="weui-form-preview__label">快递单号</view>
+                    <navigator url='/pages/expressinfo/expressinfo?expressno={{order.expressno}}&expresscode={{order.expresscode}}' class="weui-form-preview__value" style='color:lightblue'>{{order.expressno}}</navigator>
+                </view>
+                <view class="weui-form-preview__item" wx:if="{{order.refundreason!=null&&order.refundreason!=''}}">
+                    <view class="weui-form-preview__label">退款确认</view>
+                    <view class="weui-form-preview__value">{{order.refundreason}}</view>
+                </view>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='W'}}" bindtap='payOrder'>
+                <view  class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">立即支付</view>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='P'}}">
+                <view class="weui-form-preview__btn weui-form-preview__btn_warn" bindtap='refundRequest' hover-class="weui-form-preview__btn_active">退款</view>
+                <button open-type='contact' class="weui-form-preview__btn weui-form-preview__btn_primary" style='background:white;'  hover-class="weui-form-preview__btn_active">联系客服</button>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='E'}}">
+                <view class="weui-form-preview__btn weui-form-preview__btn_warn" bindtap='refundRequest' hover-class="weui-form-preview__btn_active">退款</view>
+                <view bindtap='setSuccess' class="weui-form-preview__btn weui-form-preview__btn_primary" style='background:white;'  hover-class="weui-form-preview__btn_active">确认收货</view>
+            </view>
+            <view class="weui-form-preview__ft" wx:if="{{order.status=='RW'}}">
+                <navigator  class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">等待退款</navigator>
+            </view>
+        </view>
+                <view class='weui-cells__tips' wx:if="{{order.status=='RW'}}">我们通常会在1-3个工作日内完成退款，请耐心等候，有任何疑问请直接联系客服。</view>
+        <navigator style='right:0px;position:absolute;font-size:13px;margin-top:10px;' url="/pages/content/content?keycode=purchaseagreement" class="weui-agree__link">《商品购买条款》</navigator>
+        
+        <view class="weui-msg__extra-area">
+            <view class="weui-footer">
+                <view class="weui-footer__links">
+                    <navigator url="" class="weui-footer__link">{{copyright.name}}</navigator>
+                </view>
+                <view class="weui-footer__text">Copyright © 2008-2018 {{copyright.website}}</view>
+            </view>
+        </view>
+    </view>
+</view>
