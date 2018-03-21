@@ -1,0 +1,71 @@
+<!--pages/goodsorder/goodsorder.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">{{showTopTips}}</view>
+    <view class="weui-cells__title">收件信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" bindtap='gotoMemberAddress'>
+        <view class="weui-cell__bd" style='' wx:if="{{addressid==0}}">请选择收货方式</view>
+        <view class="weui-cell__bd" style='' wx:else>
+          <view class='flex-row'>
+            <view>
+              <label class='fa fa-user-o'></label> {{addressname}}</view>
+            <view style='margin-left:10px;'>
+              <label class='fa fa-phone'></label> {{addressmobile}}</view>
+          </view>
+          <view style='margin-top:10px;'>
+            <view>
+              <label class='fa fa-map-marker'></label> {{address}}</view>
+          </view>
+        </view>
+        <view class="weui-cell__ft">
+          <label class='fa fa-angle-right'></label>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">商品信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell" wx:for="{{cart}}" wx:key="key">
+        <view class="weui-cell__bd flex-row">
+          <view style='flex:4'>{{item.info.name}}</view>
+          <view style='flex:1'>X{{item.qty}}</view>
+          <view style='flex:1' class='text-right'>￥{{item.info.price*item.qty}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">订单信息</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd  flex-row ">
+          <view style='flex:4'>配送费<text class='weui-msg__desc' wx:if="{{freeexpressprice>0}}"> 总金额{{freeexpressprice}}元以上包邮</text></view>
+          <view style='flex:1'  class='text-right' wx:if="{{freeexpressprice==0}}">包邮</view>
+          <view style='flex:1'  class='text-right' wx:if="{{freeexpressprice>0}}">￥{{totalamount>=freeexpressprice?"0":expressfee}}</view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd  flex-row ">
+          <view style='flex:4'>总金额</view>
+          <view style='flex:4'  class='text-right primary' >￥{{totalamount>=freeexpressprice?totalamount:totalamount+expressfee}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cells__title">买家留言</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请填写您的留言信息" style="height: 3.3em" value='{{comment}}' bindinput='inputComment' maxlength='200' />
+          <view class="weui-textarea-counter">{{comment.length}}/200</view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__title">{{paymentdescription}}</view>
+
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="submitOrder">提交订单</button>
+    </view>
+    <view class="weui-cells__title">提交订单后，请在30分钟内完成支付，否则自动取消。</view>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+/* pages/memberaddress/memberaddress.wxss */
+.btnadd{
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100vw;
+}
+.btnadd button{
+  border-radius: 0px;
+}

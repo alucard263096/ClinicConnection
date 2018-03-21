@@ -1,0 +1,40 @@
+<!--pages/goodsorderlist/goodsorderlist.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells__title text-center" wx:if="{{list.length==0}}">暂无数据</view>
+    <block wx:for="{{list}}" wx:key="order">
+      <view class="weui-cells__title"  bindtap='gotoPayment' id="{{item.id}}">{{item.orderno}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <block wx:for="{{item.goods}}" wx:key="item" wx:for-item="goods">
+            <navigator url='/pages/goods/goods?id={{goods.goods_id}}'  class=' flex-row' >
+
+              <view class='flex-1'>
+                <image mode='widthFix' style='width:100%;' src='{{uploadpath}}goods/{{goods.cover}}'></image>
+              </view>
+              <view style='flex:5;padding-top:10px;padding-left:10px;'>{{goods.name}}</view>
+              <view class='flex-1 text-right' style='padding-top:10px;'>X{{goods.qty}}</view>
+            </navigator>
+            </block>
+            <view class='flex-row'>
+              <view style='flex:2;' class='weui-msg__desc'>{{item.submit_time}}</view>
+              <view class='flex-1 text-right'>实付：<text class='primary'>{{item.amount}}</text></view>
+            </view>
+          </view>
+        </view>
+        <view class="weui-cell">
+          <view class="weui-cell__hd">
+            <image src="{{icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          </view>
+          <view class="weui-cell__bd">{{item.status_name}}</view>
+          <view class="weui-cell__ft" style='padding-top:5px;'>
+          <button wx:if="{{item.status=='W'}}" size='mini' type='primary'  bindtap='gotoPayment' id="{{item.id}}">继续支付</button>
+          <button wx:if="{{item.status=='P'||item.status=='E'||item.status=='RW'}}" size='mini' bindtap='gotoPayment' id="{{item.id}}">查看订单</button>
+          <button wx:if="{{item.status=='F'||item.status=='R'}}" size='mini' bindtap='addToCart' id="{{item.id}}">再来一单</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

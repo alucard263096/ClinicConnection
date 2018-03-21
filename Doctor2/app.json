@@ -1,6 +1,12 @@
 {
   "pages": [
     "pages/doctor/doctor",
+    "pages/goodsorderpayment/goodsorderpayment",
+    "pages/expressinfo/expressinfo",
+    "pages/goodsorderlist/goodsorderlist",
+    "pages/goodsorder/goodsorder",
+    "pages/memberaddress/memberaddress",
+    "pages/memberaddressadd/memberaddressadd",
     "pages/home/home",
     "pages/meeting/meeting",
     "pages/resulting/resulting",

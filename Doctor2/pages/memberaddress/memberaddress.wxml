@@ -1,0 +1,31 @@
+<!--pages/memberaddress/memberaddress.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-cells" wx:for="{{list}}" wx:key="key">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <view class='flex-row'>
+            <view class='flex-1'>{{item.name}}</view>
+            <view style='flex:4;'>{{item.mobile}}</view>
+            <view class='flex-1 primary text-right'>{{item.is_default_value=='Y'?"[默认]":""}}</view>
+          </view>
+          <view>
+            {{item.address}}
+          </view>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd primary" wx:if="{{needreturn=='Y'}}" bindtap='chooseAddress'  id="{{item.id}}" ><label class='fa fa-check-circle'></label> 使用此地址</view>
+        <view class="weui-cell__bd primary" wx:if="{{needreturn!='Y'}}"  ></view>
+        <view class="weui-cell__ft flex-row">
+          <view bindtap='editAddress' id="{{item.id}}"><label class='fa fa-edit'></label> 编辑</view>
+          <view style='margin-left:20px;' bindtap='deleteAddress' id="{{item.id}}"><label class='fa fa-trash-o'></label> 删除</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="btnadd">
+  <button class="weui-btn" type="primary" bindtap='addNew'>添加新地址</button>
+</view>

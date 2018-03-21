@@ -3,14 +3,16 @@
 
         <view class="weui-cells__title">个人管理</view>
         <view class="weui-cells weui-cells_after-title">
+        <!--
             <navigator url="/pages/health/health" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class='weui-cell__hd fa fa-user'></view>
                 <view class="weui-cell__bd">个人健康</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
             </navigator>
+        -->
             <navigator url="/pages/orderlist/orderlist" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class='weui-cell__hd fa fa-bars'></view>
-                <view class="weui-cell__bd">预约订单</view>
+                <view class="weui-cell__bd">预约</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
             </navigator>
             <navigator url="/pages/meeting/meeting" open-type='switchTab' class="weui-cell weui-cell_access" hover-class="weui-cell_active">
@@ -21,6 +23,20 @@
             <navigator url="/pages/track/track" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class='weui-cell__hd fa fa-user-md'></view>
                 <view class="weui-cell__bd">浏览足迹</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+        </view>
+
+        <view class="weui-cells__title">购物</view>
+        <view class="weui-cells weui-cells_after-title">
+            <navigator url="/pages/goodsorderlist/goodsorderlist" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-shopping-cart'></view>
+                <view class="weui-cell__bd">商品订单</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
+            </navigator>
+            <navigator url="/pages/memberaddress/memberaddress" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+                <view class='weui-cell__hd fa fa-address-book'></view>
+                <view class="weui-cell__bd">收货地址</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
             </navigator>
         </view>
