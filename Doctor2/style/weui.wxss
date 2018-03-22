@@ -921,6 +921,7 @@ icon {
   top: 0;
   width: 100%;
   border-bottom: 1rpx solid #CCCCCC;
+  background: white;
 }
 .weui-navbar__item {
   position: relative;
