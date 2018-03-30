@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/static/static",
     "pages/meeting/meeting",
     "pages/resulting/resulting",
     "pages/mall/mall",
     "pages/goods/goods",
-    "pages/static/static",
     "pages/livemeeting/livemeeting",
     "pages/signin/signin",
     "pages/report/report",

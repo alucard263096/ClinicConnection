@@ -17,28 +17,63 @@
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
-          <view style='background:white;'>
+          <view>
             <view style='margin-top:2vh;'>
               <text style='margin-left:2vh;'>昨日概况</text>
-              <text class='weui-msg__desc' style='position:absolute;right:2vh;margin-top:1vh;'>数据更新至2018-01-28</text>
+              <text class='weui-msg__desc' style='position:absolute;right:2vh;margin-top:1vh;'>数据更新至{{summary.counting_date}}</text>
             </view>
             <view class="weui-flex summaryitem">
               <view class="weui-flex__item">
                 <view class="placeholder">
-                  <view class='weui-media-box__desc'>累计预约</view>
-                  <view>1.6K</view>
-                  <view class='weui-media-box__desc primary'>日：37.47%</view>
-                  <view class='weui-media-box__desc danger'>月：37.47%</view>
-                  <view class='weui-media-box__desc'>年：37.47%</view>
+                  <view class='weui-media-box__desc'>会诊</view>
+                  <view>{{summary.meeting_count}}次</view>
+                  <view class='weui-media-box__desc {{summary.meeting_count_percent<0.3?"danger":"primary"}}'>比例：{{summary.meeting_count_percent*100}}%</view>
                 </view>
               </view>
               <view class="weui-flex__item">
-                <view class="placeholder">累计会诊</view>
+                <view class="placeholder">
+                  <view class='weui-media-box__desc'>预约收入</view>
+                  <view>￥{{summary.order_money}}</view>
+                  <view class='weui-media-box__desc {{summary.order_money_percent<0.3?"danger":"primary"}}'>比例：{{summary.order_money_percent*100}}%</view>
+                </view>
               </view>
               <view class="weui-flex__item">
-                <view class="placeholder">累计收入</view>
+                <view class="placeholder">
+                  <view class='weui-media-box__desc'>销售金额</view>
+                  <view>￥{{summary.goodssales_money}}</view>
+                  <view class='weui-media-box__desc {{summary.goodssales_money_percent<0.3?"danger":"primary"}}'>比例：{{summary.goodssales_money_percent*100}}%</view>
+                </view>
               </view>
             </view>
+
+
+<view style='margin-top:2vh;'>
+              <text style='margin-left:2vh;'>累计数据</text>
+            </view>
+            <view class="weui-flex summaryitem">
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  <view class='weui-media-box__desc'>会诊</view>
+                  <view>{{summary.his_meeting_count}}次</view>
+                  <view class='weui-media-box__desc {{summary.his_meeting_count_percent<0.3?"danger":"primary"}}'>比例：{{summary.his_meeting_count_percent*100}}%</view>
+                </view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  <view class='weui-media-box__desc'>预约收入</view>
+                  <view>￥{{summary.his_order_money}}</view>
+                  <view class='weui-media-box__desc {{summary.his_order_money_percent<0.3?"danger":"primary"}}'>比例：{{summary.his_order_money_percent*100}}%</view>
+                </view>
+              </view>
+              <view class="weui-flex__item">
+                <view class="placeholder">
+                  <view class='weui-media-box__desc'>销售金额</view>
+                  <view>￥{{summary.his_goodssales_money}}</view>
+                  <view class='weui-media-box__desc {{summary.his_goodssales_money_percent<0.3?"danger":"primary"}}'>比例：{{summary.his_goodssales_money_percent*100}}%</view>
+                </view>
+              </view>
+            </view>
+
           </view>
 
 

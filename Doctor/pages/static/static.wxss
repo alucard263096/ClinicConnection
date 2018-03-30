@@ -28,3 +28,6 @@ width:25vw;
 .summaryitem .weui-flex__item .placeholder view{
   margin-top:1vh;
 }
+.weui-tab{
+  background: white;
+}
