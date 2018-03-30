@@ -109,19 +109,79 @@
               </view>
             </view>
           </view>
-          <canvas canvas-id="orderdetialline" disable-scroll="true" class="canvas"></canvas>
-
+          <canvas canvas-id="orderdetialline" disable-scroll="true" class="canvas" style='width:100vw;height:35vh;' bindtouchstart="orderdetailTouchHandler"></canvas>
+          <canvas canvas-id="orderdetialpie" class="canvas" bindtouchstart="orderdetialpieTouchHandler" style='width:100vw;height:50vh;' ></canvas>
         </view>
 
         <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
 
 
+          <view style='margin-top:2vh;'>
+            <view style='margin-top:2vh;'>
+              <text style='margin-left:2vh;'>日期范围</text>
+
+              <text class='primary dateselectbox' bindtap='meetingdetaildate' id="7">最近一周</text>
+              <text class='primary dateselectbox' bindtap='meetingdetaildate' id="30">最近一个月</text>
+
+            </view>
+            <view class='flex-row weui-msg__desc' style='margin:4vw;'>
+              <view class="section">
+                <picker mode="date" value="{{meetingdetail_startdate}}" start="2018-01-01" end="2050-09-01" bindchange="changemeetingDetailStartDate">
+                  <view class="picker">
+                    {{meetingdetail_startdate}}
+                  </view>
+                </picker>
+              </view>
+              <view style='margin-left:10px;margin-right:10px;'> 至 </view>
+
+              <view class="section">
+                <picker mode="date" value="{{meetingdetail_enddate}}" start="2018-01-01" end="2050-09-01" bindchange="changemeetingDetailEndDate">
+                  <view class="picker">
+                    {{meetingdetail_enddate}}
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <canvas canvas-id="meetingdetialline" disable-scroll="true" class="canvas" style='width:100vw;height:35vh;' bindtouchstart="meetingdetailTouchHandler"></canvas>
+          <canvas canvas-id="meetingdetialpie" class="canvas" bindtouchstart="meetingdetialpieTouchHandler" style='width:100vw;height:50vh;' ></canvas>
 
         </view>
 
 
         <view class="weui-tab__content" hidden="{{activeIndex != 3}}">
 
+
+
+          <view style='margin-top:2vh;'>
+            <view style='margin-top:2vh;'>
+              <text style='margin-left:2vh;'>日期范围</text>
+
+              <text class='primary dateselectbox' bindtap='goodssalesdetaildate' id="7">最近一周</text>
+              <text class='primary dateselectbox' bindtap='goodssalesdetaildate' id="30">最近一个月</text>
+
+            </view>
+            <view class='flex-row weui-msg__desc' style='margin:4vw;'>
+              <view class="section">
+                <picker mode="date" value="{{goodssalesdetail_startdate}}" start="2018-01-01" end="2050-09-01" bindchange="changegoodssalesDetailStartDate">
+                  <view class="picker">
+                    {{goodssalesdetail_startdate}}
+                  </view>
+                </picker>
+              </view>
+              <view style='margin-left:10px;margin-right:10px;'> 至 </view>
+
+              <view class="section">
+                <picker mode="date" value="{{goodssalesdetail_enddate}}" start="2018-01-01" end="2050-09-01" bindchange="changegoodssalesDetailEndDate">
+                  <view class="picker">
+                    {{goodssalesdetail_enddate}}
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <canvas canvas-id="goodssalesdetialline" disable-scroll="true" class="canvas" style='width:100vw;height:35vh;' bindtouchstart="goodssalesdetailTouchHandler"></canvas>
+          <canvas canvas-id="goodssalesdetialpie" class="canvas" bindtouchstart="goodssalesdetialpieTouchHandler" style='width:100vw;height:50vh;' ></canvas>
 
 
         </view>

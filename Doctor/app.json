@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/static/static",
     "pages/meeting/meeting",
+    "pages/static/static",
     "pages/resulting/resulting",
     "pages/mall/mall",
     "pages/goods/goods",
