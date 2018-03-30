@@ -46,9 +46,14 @@ export class ApiUtil {
     return val.toFixed(digits);
   }
   static FormatDate(val) {
-    return val.substr(0, 10);
+    return val.getFullYear() + "-" + (val.getMonth() + 1) + "-" + val.getDate();
   }
   static Storage = null;
+
+  static StringToDate(fDate) {
+    var fullDate = fDate.split("-");
+    return new Date(fullDate[0], fullDate[1] - 1, fullDate[2], 0, 0, 0);
+  } 
 
 
 }

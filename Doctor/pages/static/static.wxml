@@ -47,8 +47,8 @@
             </view>
 
 
-<view style='margin-top:2vh;'>
-              <text style='margin-left:2vh;'>累计数据</text>
+            <view style='margin-top:2vh;'>
+              <text style='margin-left:2vh;'>累计统计</text>
             </view>
             <view class="weui-flex summaryitem">
               <view class="weui-flex__item">
@@ -82,7 +82,34 @@
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
 
 
+          <view style='margin-top:2vh;'>
+            <view style='margin-top:2vh;'>
+              <text style='margin-left:2vh;'>日期范围</text>
 
+              <text class='primary dateselectbox' bindtap='orderdetaildate' id="7">最近一周</text>
+              <text class='primary dateselectbox' bindtap='orderdetaildate' id="30">最近一个月</text>
+
+            </view>
+            <view class='flex-row weui-msg__desc' style='margin:4vw;'>
+              <view class="section">
+                <picker mode="date" value="{{orderdetail_startdate}}" start="2018-01-01" end="2050-09-01" bindchange="changeOrderDetailStartDate">
+                  <view class="picker">
+                    {{orderdetail_startdate}}
+                  </view>
+                </picker>
+              </view>
+              <view style='margin-left:10px;margin-right:10px;'> 至 </view>
+
+              <view class="section">
+                <picker mode="date" value="{{orderdetail_enddate}}" start="2018-01-01" end="2050-09-01" bindchange="changeOrderDetailEndDate">
+                  <view class="picker">
+                    {{orderdetail_enddate}}
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+          <canvas canvas-id="orderdetialline" disable-scroll="true" class="canvas"></canvas>
 
         </view>
 

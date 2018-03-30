@@ -31,3 +31,10 @@ width:25vw;
 .weui-tab{
   background: white;
 }
+.dateselectbox{
+  font-size:8px;
+  border:1px #0BB20C solid;
+  border-radius: 11px;
+  padding:4px;
+  margin-left:15px;
+}

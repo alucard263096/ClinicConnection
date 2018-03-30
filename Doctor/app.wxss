@@ -29,3 +29,6 @@ page{
 .danger {
   color: #FF5155;
 }
+.flex-row{
+  display: flex;
+}

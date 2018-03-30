@@ -5,6 +5,7 @@ import { DoctorApi } from "../apis/doctor.api";
 export class AppBase {
   app = null;
   options = null;
+  windowWidth=320;
   data = {
     
     uploadpath: ApiConfig.GetUploadPath(),
@@ -81,6 +82,17 @@ export class AppBase {
     console.log("yeah!");
   }
   onLoad(options){
+
+    var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      this.windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
+
+
+
     if(options.issignin!=1){
 
       var identity=wx.getStorageSync("identity");
