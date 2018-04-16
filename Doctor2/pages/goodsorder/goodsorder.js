@@ -90,6 +90,7 @@ class Order extends AppBase {
       console.log(cartstr);
     }
     var json={
+      doctor_id: AppBase.DOCTORID,
       cart: cartstr,
       addressid:data.addressid,
       comment:data.comment

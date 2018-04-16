@@ -9,8 +9,34 @@ class Doctor extends AppBase {
   onLoad(options) {
     console.log(options);
     this.Base.Page = this;
-    options.unicode = "vista";
-    options.id=1;
+    //options.unicode = "mamidx";
+    //options.id=17;
+
+    if(options.id!=undefined){
+      wx.setStorageSync("id", options.id);
+    }
+    if (options.unicode != undefined) {
+      wx.setStorageSync("unicode", options.unicode);
+    }
+
+    if (options.id == undefined) {
+      options.id = wx.getStorageSync("id");
+    }
+    if (options.unicode == undefined) {
+      options.unicode = wx.getStorageSync("unicode");
+    }
+    if(options.id==""){
+      options.id=undefined;
+    }
+    if (options.unicode == "") {
+      options.unicode = undefined;
+    }
+    if (options.id == "") {
+      options.id = undefined;
+    }
+    if (options.unicode == "") {
+      options.unicode = undefined;
+    }
     super.onLoad(options);
     AppBase.DOCTORID = options.id;
     

@@ -198,7 +198,7 @@ class Resulting extends AppBase {
     }
     var that=this;
     var meetingApi = new MeetingApi();
-    meetingApi.send({ meeting_id: that.Base.options.id, "type": "S", side: "D", message: "meetingid_" + that.Base.options.id + "_" + (new Date().getTime().toString()) }, function (data) {
+    meetingApi.send({ meeting_id: that.Base.options.id, "type": "S", side: "P", message: "meetingid_" + that.Base.options.id + "_" + (new Date().getTime().toString()) }, function (data) {
 
     });
   }

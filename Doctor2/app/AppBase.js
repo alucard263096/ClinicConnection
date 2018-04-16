@@ -229,6 +229,37 @@ export class AppBase{
       }
     });
   }
+
+  uploadFile(modul, filename, callback) {
+
+    var tempFilePaths = filename
+    wx.uploadFile({
+      url: ApiConfig.GetFileUploadAPI(), //仅为示例，非真实的接口地址
+      filePath: tempFilePaths,
+      name: 'file',
+      formData: {
+        'module': modul,
+        "field": "file"
+      },
+      success: function (res) {
+        console.log(res);
+        var data = res.data
+        if (data.substr(0, 7) == "success") {
+          data = data.split("|");
+          var photo = data[2];
+          callback(photo);
+        } else {
+          wx.showToast({
+            title: '上传失败，请重试',
+            icon: 'warn',
+            duration: 2000
+          })
+        }
+        //do something
+      }
+    });
+  }
+
   uploadImage(modul,callback){
     wx.chooseImage({
       count:8,
