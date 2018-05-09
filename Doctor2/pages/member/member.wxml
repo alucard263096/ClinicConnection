@@ -20,11 +20,11 @@
                 <view class="weui-cell__bd">问答记录</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
             </navigator>
-            <navigator url="/pages/track/track" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view url="/pages/track/track" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap='gotoClinic'>
                 <view class='weui-cell__hd fa fa-user-md'></view>
-                <view class="weui-cell__bd">浏览足迹</view>
+                <view class="weui-cell__bd">更多医生</view>
                 <view class="weui-cell__ft weui-cell__ft_in-access"><text  style='color:white' decode='true'>&nbsp;</text></view>
-            </navigator>
+            </view>
         </view>
 
         <view class="weui-cells__title">购物</view>

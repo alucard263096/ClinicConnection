@@ -9,8 +9,8 @@ class Doctor extends AppBase {
   onLoad(options) {
     console.log(options);
     this.Base.Page = this;
-    //options.unicode = "mamidx";
-    //options.id=17;
+    //options.unicode = "vista";
+    //options.id=1;
 
     if(options.id!=undefined){
       wx.setStorageSync("id", options.id);
@@ -48,9 +48,6 @@ class Doctor extends AppBase {
       that.setData({ doctor: data});
     });
 
-    doctorApi.track({ doctor_id: id }, function (data) {
-      
-    },false);
 
   }
   gotoOrder(e) {
@@ -60,11 +57,20 @@ class Doctor extends AppBase {
       url: '../schedule/schedule?doctor_id='+this.Base.options.id,
     })
   }
+  onShow(){
+    var doctorApi = new DoctorApi();
+    var that = this;
+    setTimeout(function(){
+      doctorApi.track({ doctor_id: that.Base.options.id }, function (data) {
+      }, false);
+    },3000);
+  }
 }
 
 var doctor = new Doctor();
 var body = doctor.generateBodyJson();
-body.onLoad = doctor.onLoad; 
+body.onLoad = doctor.onLoad;
+body.onShow = doctor.onShow; 
 body.setSelectedDepartment = doctor.setSelectedDepartment;
 body.gotoOrder = doctor.gotoOrder;
 Page(body)

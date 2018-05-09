@@ -1,6 +1,7 @@
 // pages/member/member.js
 import { AppBase } from "../../app/AppBase";
-import { MemberApi} from "../../apis/member.api.js";
+import { MemberApi } from "../../apis/member.api.js";
+import { ClinicApi } from "../../apis/clinic.api.js";
 
 class Member extends AppBase {
   constructor() {
@@ -17,11 +18,21 @@ class Member extends AppBase {
       this.Base.setMyData({ member: AppBase.MemberInfo });
     }
   }
+  gotoClinic() {
+    var clinicapi=new ClinicApi();
+    clinicapi.detail({},(ret)=>{
+      wx.navigateToMiniProgram({
+        appId: ret.wechatconfig_appid   ,
+        path: 'pages/home/home?unicode='+ret.unicode,
+      })
+    });
+  }
 }
 
 var member = new Member();
 var body = member.generateBodyJson();
-body.onLoad = member.onLoad;
+body.onLoad = member.onLoad; 
 body.onShow = member.onShow;
+body.gotoClinic = member.gotoClinic;
 
 Page(body)

@@ -145,7 +145,8 @@ class Schedule extends AppBase {
         description:description,
         contact:contact,
         booking_type: t,
-        photos:photos.join(",")
+        photos:photos.join(","),
+		"from":"D"
       };
       orderApi.submit(json,function(data){
         if(data.code=="0"){

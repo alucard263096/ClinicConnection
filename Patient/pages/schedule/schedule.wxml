@@ -83,7 +83,7 @@
           <view class="weui-label">问题描述</view>
         </view>
         <view class="weui-cell__bd">
-          <textarea class="weui-textarea" placeholder="详细补充你的求诊内容" maxlength='200' style="height: 3.3em" bindinput="changeDescription" />
+          <textarea class="weui-textarea" placeholder="请简要的叙述想咨询的问题" maxlength='200' style="height: 3.3em" bindinput="changeDescription" />
           <view class="weui-textarea-counter">{{description.length}}/200</view>
         </view>
       </view>

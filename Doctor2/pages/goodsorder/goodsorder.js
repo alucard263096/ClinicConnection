@@ -93,7 +93,8 @@ class Order extends AppBase {
       doctor_id: AppBase.DOCTORID,
       cart: cartstr,
       addressid:data.addressid,
-      comment:data.comment
+      comment:data.comment,
+		"from":"D"
     };
 
     var goodsApi = new GoodsApi();
