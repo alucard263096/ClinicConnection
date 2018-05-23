@@ -68,7 +68,7 @@
         <view class="weui-cell__bd" bindtap='viewPhoto' id="{{uploadpath}}clinic/{{clinic.businesslicense}}">营业执照</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>
-      <view class='weui-cell' bindtap='viewPhoto' id="{{uploadpath}}clinic/{{clinic.medicallicense}}">
+      <view wx:if="{{clinic.medicallicense!=''}}" class='weui-cell' bindtap='viewPhoto' id="{{uploadpath}}clinic/{{clinic.medicallicense}}">
         <view class="weui-cell__bd">医疗机构许可证</view>
         <view class="weui-cell__ft weui-cell__ft_in-access"></view>
       </view>

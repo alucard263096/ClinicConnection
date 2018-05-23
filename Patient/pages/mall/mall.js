@@ -11,14 +11,14 @@ class Mall extends AppBase {
   onLoad(options) {
     this.Base.Page = this;
     super.onLoad(options);
-
-
+    this.Base.setMyData({category_index:0});
   }
   onShow() {
     var that = this;
     var goodsApi = new GoodsApi();
     goodsApi.categorylist({}, function (data) {
-      that.setData({ categories: data, category: data[0] });
+      var category_index = that.Base.getMyData().category_index;
+      that.setData({ categories: data, category: data[category_index] });
       var memberapi = new MemberApi();
       memberapi.getcart({}, function (data) {
         console.log("a");
@@ -33,7 +33,7 @@ class Mall extends AppBase {
     var id = e.currentTarget.id;
     for (var i = 0; i < this.data.categories.length; i++) {
       if (this.data.categories[i].id == id) {
-        this.Base.setMyData({ category: this.data.categories[i] });
+        this.Base.setMyData({ category: this.data.categories[i], category_index:i });
         break;
       }
     }
